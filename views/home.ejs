@@ -134,6 +134,10 @@
                 </tbody>
            
             </table>
+            <div id="notFound" hidden>
+                <br>
+                <h1 style="text-align: center;">No Results Found</h1>
+            </div>
             <br><br><br><br><br><br>
             </div>
         
@@ -310,6 +314,8 @@
                <script>
                    function func2()
                    {
+                       let c=0;
+                       let notFound=document.getElementById('notFound');
                        let filter2=document.getElementById('filter2').value.toUpperCase();
                        let st=document.getElementsByClassName("stateSearch");
                        for(let i=0;i<st.length;i++)
@@ -321,9 +327,16 @@
                                if(sp.indexOf(filter2)>-1)
                                st[i].hidden=false;
                                else
+                               {
+                                   c++;
                                st[i].hidden=true;
+                               }
                            }
                        }
+                       if(c==st.length)
+                       notFound.hidden=false;
+                       else
+                       notFound.hidden=true;
                    }
                </script>
                 <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
