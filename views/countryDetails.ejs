@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            <%=states.country%>
+        </title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+    </head>
+    <body>
+        <%-include('./partials/navbar')%>
+        <div class="container">
+            <h1 class="text-center">Welcome to <%=states.country%></h1>
+            <br>
+            <br>
+            <table class="table table-bordered">
+                <thead>
+                    <th>Total Cases</th>
+                    <th>Today Cases</th>
+                    <th>Total Recovered</th>
+                    <th>Today Recovered</th>
+                    <th>Total Deaths</th>
+                    <th>Today Deaths</th>
+                    <th>Active</th>
+                    <th>Critical</th>
+                    <th>Cases per Million</th>
+                    <th>Deaths per Million</th>
+                    <th>Tests Done</th>
+                    <th>Test per Million</th>
+                    <th>Population</th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="color:orange"><%=states.cases%></td>
+                        <td style="color:orange"><span style="color:orange">+</span><%=states.todayCases%></td>
+                        <td style="color:rgb(30, 240, 30)"><%=states.recovered%></td>
+                        <td style="color:rgb(30, 240, 30)"S><span style="color:rgb(30, 240, 30)">+</span><%=states.todayRecovered%></td>
+                        <td class="text-danger"><%=states.deaths%></td>
+                        <td class="text-danger"><span style="color:red">+</span><%=states.todayDeaths%></td>
+                        <td><%=states.active%></td>
+                        <td><%=states.critical%></td>
+                        <td><%=states.casesPerOneMillion%></td>
+                        <td><%=states.deathsPerOneMillion%></td>
+                        <td><%=states.tests%></td>
+                        <td><%=states.testsPerOneMillion%></td>
+                        <td><%=states.population%></td>
+                    </tr>
+                <tr>Updated: <%=new Date(states.updated)%></tr>
+                </tbody>
+            </table>
+            <table class="table table-bordered">
+                <thead>
+                    <th>Total Cases</th>
+                    <th>Today Cases</th>
+                    <th>Total Recovered</th>
+                    <th>Today Recovered</th>
+                    <th>Total Deaths</th>
+                    <th>Today Deaths</th>
+                    <th>Active</th>
+                    <th>Critical</th>
+                    <th>Cases per Million</th>
+                    <th>Deaths per Million</th>
+                    <th>Tests Done</th>
+                    <th>Test per Million</th>
+                    <th>Population</th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="color:orange"><%=yesterday.cases%></td>
+                        <td style="color:orange"><span style="color:orange">+</span><%=yesterday.todayCases%></td>
+                        <td style="color:rgb(30, 240, 30)"><%=yesterday.recovered%></td>
+                        <td style="color:rgb(30, 240, 30)"S><span style="color:rgb(30, 240, 30)">+</span><%=yesterday.todayRecovered%></td>
+                        <td class="text-danger"><%=yesterday.deaths%></td>
+                        <td class="text-danger"><span style="color:red">+</span><%=yesterday.todayDeaths%></td>
+                        <td><%=yesterday.active%></td>
+                        <td><%=yesterday.critical%></td>
+                        <td><%=yesterday.casesPerOneMillion%></td>
+                        <td><%=yesterday.deathsPerOneMillion%></td>
+                        <td><%=yesterday.tests%></td>
+                        <td><%=yesterday.testsPerOneMillion%></td>
+                        <td><%=yesterday.population%></td>
+                    </tr>
+                    <tr><%=yesterday.updated%></tr>
+                </tbody>
+            </table>
+            <table class="table table-bordered">
+                <thead>
+                    <th>Total Cases</th>
+                    <th>Today Cases</th>
+                    <th>Total Recovered</th>
+                    <th>Today Recovered</th>
+                    <th>Total Deaths</th>
+                    <th>Today Deaths</th>
+                    <th>Active</th>
+                    <th>Critical</th>
+                    <th>Cases per Million</th>
+                    <th>Deaths per Million</th>
+                    <th>Tests Done</th>
+                    <th>Test per Million</th>
+                    <th>Population</th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="color:orange"><%=twoDaysAgo.cases%></td>
+                        <td style="color:orange"><span style="color:orange">+</span><%=twoDaysAgo.todayCases%></td>
+                        <td style="color:rgb(30, 240, 30)"><%=twoDaysAgo.recovered%></td>
+                        <td style="color:rgb(30, 240, 30)"S><span style="color:rgb(30, 240, 30)">+</span><%=twoDaysAgo.todayRecovered%></td>
+                        <td class="text-danger"><%=twoDaysAgo.deaths%></td>
+                        <td class="text-danger"><span style="color:red">+</span><%=twoDaysAgo.todayDeaths%></td>
+                        <td><%=twoDaysAgo.active%></td>
+                        <td><%=twoDaysAgo.critical%></td>
+                        <td><%=twoDaysAgo.casesPerOneMillion%></td>
+                        <td><%=twoDaysAgo.deathsPerOneMillion%></td>
+                        <td><%=twoDaysAgo.tests%></td>
+                        <td><%=twoDaysAgo.testsPerOneMillion%></td>
+                        <td><%=twoDaysAgo.population%></td>
+                    </tr>
+                    <tr><%=twoDaysAgo.updated%></tr>
+                </tbody>
+            </table>
+        </div>
+
+
+        <%-include('./partials/footer')%>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous"></script>
+    </body>
+</html>

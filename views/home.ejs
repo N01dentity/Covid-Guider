@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Covid Guider
+        </title>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+    <style>
+        .mystyle{
+            display:none;
+        }
+        /*.change{
+            content:"Hide";
+        }
+        .change:after{
+            position:absolute;
+            content: "Hide all states of India";
+        }*/
+    </style>
+    </head>
+    
+    <body>
+        <%-include('./partials/navbar')%>
+        <marquee style="color:rgb(209, 35, 35)">!!!!Live Covid 19 update across the world. Lockdown in West Bengal extended till 15th JUNE!!!!</marquee>
+
+        <h1 class="text-center">Welcome to the Corona Virus Update page</h1>
+        <br>
+        <br>
+        <div class="container">
+            <div id="chartContainer" class="mb-5" style="height: 370px; width: 100%;"></div>
+            </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-9 col-xs-12">
+                    <h3>World</h3>
+                    <table class="table">
+                        <thead>
+                            <th>Total Cases</th>
+                            <th>Total Active</th>
+                            <th>Total Recovered</th>
+                            <th>Total Deaths</th>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="text-primary"style="font-weight:bold;font-size:30px"><%=global.cases%></td>
+                                <td class="text-warning"style="font-weight:bold;font-size:30px"><%=global.active%></td>
+                                <td style="font-weight:bold;color:rgb(44, 230, 44);font-size:30px"><%=global.recovered%></td>
+                                <td class="text-danger" style="font-weight:bold;font-size:30px"><%=global.deaths%></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <a class="btn btn-primary d-flex justify-content-center" href="/countryWise">View All Country</a>
+                    <br>
+                    <h3>India</h3>
+                    <table class="table">
+                        <thead>
+                                    <th>Total Cases</th>
+                                    <th>Total Active</th>
+                                    <th>Total Recovered</th>
+                                    <th>Total Deaths</th>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="text-primary"style="font-weight:bold;font-size:30px"><%=country.cases%></td>
+                                    <td class="text-warning"style="font-weight:bold;font-size:30px"><%=country.active%></td>
+                                    <td style="font-weight:bold;color:rgb(44, 230, 44);font-size:30px"><%=country.recovered%></td>
+                                    <td class="text-danger"style="font-weight:bold;font-size:30px"><%=country.deaths%>
+                                    </td>
+                                   
+                                </tr>
+                            </tbody>
+                        </table>
+        <a class="btn btn-primary d-flex justify-content-center change" id="hide" type="button" onclick="func()">View / hide all States of INDIA</a>
+        <tr>Updated: <%=new Date(global.updated)%></tr>
+        </div>
+                <div class="col-lg-3">
+                    <div class="list-group mt-4">
+                        <a href="#" class="list-group-item list-group-item-action list-group-item-primary">Covid Hospitals near you</a>
+                        <a href="#" class="list-group-item list-group-item-action list-group-item-secondary"><span class="glyphicon glyphicon-tint"></span>RT-PCR test Centres</a>
+                        <a href="#" class="list-group-item list-group-item-action list-group-item-success">Available Beds for Covid Patients</a>
+                        <a href="#" class="list-group-item list-group-item-action list-group-item-danger">View All Affected Countries</a>
+                        <a href="#" class="list-group-item list-group-item-action list-group-item-warning">Health Care Tips</a>
+                         <a href="#" class="list-group-item list-group-item-action list-group-item-dark">Call an Ambulance</a>
+                         <a href="#" class="list-group-item list-group-item-action list-group-item-info">A simple info list group item</a>
+                         <a href="#" class="list-group-item list-group-item-action list-group-item-light">A simple light list group item</a>
+                         <a href="#" class="list-group-item list-group-item-action list-group-item-dark">A simple dark list group item</a>
+                </div>
+        </div>
+        </div>
+        </div>
+        <br>
+        <br>
+        <br>
+        <hr>
+        <div class="container mystyle" id="magic">
+            <h1 class="text-center">State Wise Covid Update of India</h1>
+            <br>
+            <div class="d-flex justify-content-end">
+            <input type="search" id="filter2" style="width:250px" placeholder="Search your state" onkeyup="func2()">
+            </div>
+            <table class="table table-striped table-bordered table-hover">
+                <thead>
+                    <tr>Updated: <%=new Date(r.updated)%></tr>
+                        <tr>
+                            <th>No</th>
+                        <th>State</th>
+                        <th>Total Cases</th>
+                        <th>Today's Cases</th>
+                        <th>Total Active </th>
+                        <th>Total Recovered</th>
+                        <th>Today Recovered</th>
+                        <th>Total Death</th>
+                        <th>Today's Deaths</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <%var c=1%>
+                        <%for(let i of r.states){%>
+                        <tr class="stateSearch">
+                                <th><%=c++%></th>
+                                <td style="font-weight:bold"><%=i.state%></td>
+                                <td><%=i.cases%></td>
+                                <td class="text-primary"style="font-weight:bold">+<%=i.todayCases%></td>
+                                <td class="text-warning"style="font-weight:bold"><%=i.active%></td>
+                                <td><%=i.recovered%></td>
+                                <td style="font-weight:bold;color:rgb(44, 230, 44)">+<%=i.todayRecovered%></td>
+                                <td><%=i.deaths%></td>
+                                <td class="text-danger"style="font-weight:bold">+<%=i.todayDeaths%></td>
+                        
+                    <%}%>
+                   
+                    </tr>
+                </tbody>
+           
+            </table>
+            <br><br><br><br><br><br>
+            </div>
+        
+            <script>
+               /* let table=document.querySelector('#india');
+                async function func()
+                {
+                /*const api=require("novelcovid");
+            api.settings(
+               {
+                    baseUrl:'https://disease.sh'
+                 })
+                 api.gov('india')
+                 .then(r=>{
+                     
+                });*/
+                /*const response = await fetch('https://localcoviddata.com/covid19/v1/locations?zipCode=13619');
+                const res = await response.json();
+                console.log(res);
+                for(i=0;i<res.length;i++)
+                {
+                    let item=res[i];
+                let div= document.createElement('div');
+                div.innerHTML=`<h1>country.deaths</h1>`;
+                table.appendChild(div);
+                }*/
+                
+            </script>
+            <script>
+                
+                   /* const cases=[];
+                    cases.push()
+                       var ctx = document.getElementById('myChart').getContext('2d');
+                                var myChart = new Chart(ctx, {
+                                    type: 'line',
+                                    data: {
+                                        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                                        datasets: [{
+                                            label: '# of Votes',
+                                            data: cases,
+                                            backgroundColor: [
+                                                'rgba(255, 99, 132, 0.2)',
+                                                'rgba(54, 162, 235, 0.2)',
+                                                'rgba(255, 206, 86, 0.2)',
+                                                'rgba(75, 192, 192, 0.2)',
+                                                'rgba(153, 102, 255, 0.2)',
+                                                'rgba(255, 159, 64, 0.2)'
+                                            ],
+                                            borderColor: [
+                                                'rgba(255, 99, 132, 1)',
+                                                'rgba(54, 162, 235, 1)',
+                                                'rgba(255, 206, 86, 1)',
+                                                'rgba(75, 192, 192, 1)',
+                                                'rgba(153, 102, 255, 1)',
+                                                'rgba(255, 159, 64, 1)'
+                                            ],
+                                            borderWidth: 1
+                                        }]
+                                    },
+                                    options: {
+                                        scales: {
+                                            y: {
+                                                beginAtZero: true
+                                            }
+                                        }
+                                    }
+                                });*/
+             </script>
+                <script>
+                      window.onload = function () {
+
+                                var chart = new CanvasJS.Chart("chartContainer", {
+                                    animationEnabled: true,
+                                    theme: "light2",
+                                    title:{
+                                        text: "Covid Cases"
+                                    },
+                                    axisX:{
+                                        valueFormatString: "DD MMM,YY",
+                                        crosshair: {
+                                            enabled: true,
+                                            snapToDataPoint: true
+                                        }
+                                    },
+                                    axisY: {
+                                        title: "Number of Cases",
+                                        includeZero: true,
+                                        crosshair: {
+                                            enabled: true
+                                        }
+                                    },
+                                    toolTip:{
+                                        shared:true
+                                    },  
+                                    legend:{
+                                        cursor:"pointer",
+                                        verticalAlign: "bottom",
+                                        horizontalAlign: "left",
+                                        dockInsidePlotArea: true,
+                                        itemclick: toogleDataSeries
+                                    },
+                                    data: [{
+                                        type: "line",
+                                        showInLegend: true,
+                                        name: "Total Cases  Per Day",
+                                        markerType: "square",
+                                        xValueFormatString: "DD MMM, YYYY",
+                                        color: "blue",
+                                        dataPoints: [
+                                            { x: new Date(2021,4,3), y: 650 },
+                                            { x: new Date(2021, 4, 4), y: 700 },
+                                            { x: new Date(2021, 4, 5), y: 710 },
+                                            { x: new Date(2021, 4, 6), y: 658 },
+                                            { x: new Date(2021, 4, 7), y: 734 },
+                                            { x: new Date(2021, 4, 8), y: 963 },
+                                            { x: new Date(2021, 4, 9), y: 847 },
+                                            { x: new Date(2021, 4, 10), y: 853 },
+                                            { x: new Date(2021,4, 11), y: 869 },
+                                            { x: new Date(2021,4, 12), y: 943 },
+                                            { x: new Date(2021,4, 13), y: 970 },
+                                            { x: new Date(2021, 4, 14), y: 869 },
+                                            { x: new Date(2021, 4, 15), y: 890 },
+                                            { x: new Date(2021, 4, 16), y: 930 }
+                                        ]
+                                    },
+                                    {
+                                        type: "line",
+                                        showInLegend: true,
+                                        name: "Total Deaths per Day",
+                                        //lineDashType: "dash",
+                                        color: "red",
+                                        dataPoints: [
+                                            { x: new Date(2021, 4, 3), y: 510 },
+                                            { x: new Date(2021, 4, 4), y: 560 },
+                                            { x: new Date(2021, 4, 5), y: 540 },
+                                            { x: new Date(2021, 4, 6), y: 558 },
+                                            { x: new Date(2021, 4, 7), y: 544 },
+                                            { x: new Date(2021, 4, 8), y: 693 },
+                                            { x: new Date(2021, 4, 9), y: 657 },
+                                            { x: new Date(2021, 4, 10), y: 663 },
+                                            { x: new Date(2021, 4, 11), y: 639 },
+                                            { x: new Date(2021, 4, 12), y: 673 },
+                                            { x: new Date(2021, 4, 13), y: 660 },
+                                            { x: new Date(2021, 4, 14), y: 562 },
+                                            { x: new Date(2021, 4, 15), y: 643 },
+                                            { x: new Date(2021, 4, 16), y: 570 }
+                                        ]
+                                    }]
+                                });
+                                chart.render();
+
+                                function toogleDataSeries(e){
+                                    if (typeof(e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+                                        e.dataSeries.visible = false;
+                                    } else{
+                                        e.dataSeries.visible = true;
+                                    }
+                                    chart.render();
+                                }
+
+                                }
+                </script>
+               <script>
+                   function func()
+                   {
+                       let a=document.getElementById('magic');
+                       a.classList.toggle("mystyle");
+                      // a.style.display="block";
+                      // b=document.getElementById('hide');
+                    
+                      // b.classList.toggle("change");
+                   }
+               </script>
+               <script>
+                   function func2()
+                   {
+                       let filter2=document.getElementById('filter2').value.toUpperCase();
+                       let st=document.getElementsByClassName("stateSearch");
+                       for(let i=0;i<st.length;i++)
+                       {
+                           let ss=st[i].getElementsByTagName('td')[0];
+                           let sp=ss.innerHTML.toUpperCase();
+                           if(sp)
+                           {
+                               if(sp.indexOf(filter2)>-1)
+                               st[i].style.display="";
+                               else
+                               st[i].style.display="none";
+                           }
+                       }
+                   }
+               </script>
+                <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+        <%-include('./partials/footer')%>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous"></script>
+       
+    </body>
+</html>

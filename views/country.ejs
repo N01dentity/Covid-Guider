@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Country Wise 
+        </title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+        <style>
+            /*body{
+                background: url("https://m.economictimes.com/thumb/msid-74665367,width-1200,height-900,resizemode-4,imgsize-980841/from-the-trumpet-shaped-protrusion-at-the-centre-of-a-daffodil-or-narcissus-to-a-part-of-a-cornice-with-a-vertical-face-to-the-most-popular-shape-of-chandeliers-corona-has-long-been-an-acceptable-part-of-society-.jpg");
+            }*/
+        </style>
+    </head>
+    <body>
+        <%- include('./partials/navbar')%>
+        <a href="/">Home</a>
+       <!--<div class="container">
+        <h1 class="text-center">Country Wise Covid Update</h1>
+        <table class="table table-bordered table-hover">
+            <thead>
+                
+                <th>Country</th>
+                <th>Total Cases</th>
+                <th>Total Active </th>
+                <th>Total Recovered</th>
+                <th>Total Death</th>
+            </thead>
+            <% for(let country of countries){%>
+                <tbody>
+                    <tr>
+                        <td><a href="/countryWise/<%=country.country%>"><%=country.country%></a>
+                            <img class="thumbnail" src="<%=country.countryInfo.flag%>"></td>
+                            <td><%=country.cases%></td>
+                            <td><%=country.active%></td>
+                            <td style="color:rgb(71, 221, 33)"><%=country.recovered%></td>
+                            <td class="text-danger"><%=country.deaths%></td>
+                        </tr>
+                    </tbody>
+                    <%}%>
+                </table>
+            </div>-->
+            <div class="container">
+            <h1 class="text-center">Country Wise Covid Update</h1>
+            <br>
+            <input type="search" id="search" class="d-flex justify-content-center" placeholder="Search your country" onkeyup="search()">
+            <br>
+            <div class="row" id="find">
+                <% for(let country of countries){%>
+                    <% const c=[]%>
+                    <% c.push(country.country)%>
+                <div class="col-lg-3 col-md-6 col-sm-12">
+            <div class="card mt-3" style="max-height:430px">
+                <img style="max-height:170px" src="<%=country.countryInfo.flag%>" class="card-img-top">
+                <div class="card-body">
+                    <h5 class="card-title text-center"><%=country.country%></h5>
+                    <div class="card-text">
+                        <p><strong>Total Cases : </strong><%=country.cases%></p>
+                        <p><strong>Total Active : </strong><%=country.active%></p>
+                        <p><strong>Total recovered : </strong><%=country.recovered%></p>
+                        <p><strong>Total Deaths : </strong><%=country.deaths%></p>
+                    </div>
+                    <div class="d-flex justify-content-center mt-2">
+                    <a href="/countryWise/<%=country.country%>" style="width:150px" class="btn btn-primary">Details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <%}%>
+            </div>
+        </div>
+        <div id="head" class="justify-content-center" style="font-weight:bold;align-items:center"></div>
+        <script>
+            //const d=0;
+            function search()
+            {
+                let c=0;
+                let head=document.getElementById('head');
+                let filter=document.getElementById('search').value.toUpperCase();
+                let cards=document.getElementsByClassName('card');
+                for(let i=0;i<cards.length;i++)
+                {
+                    let title=cards[i].getElementsByClassName('card-title')[0];
+                    if(title)
+                    {
+                        let text=title.innerHTML.toUpperCase();
+                        if(text.indexOf(filter)>-1)
+                        {
+                        cards[i].style.display="block";
+                    }
+                    else 
+                    {
+                            c++;
+                        cards[i].style.display="none";
+                        }
+                        
+                    }
+                    
+
+                }
+               /* if(c==cards.length &&d==0)
+                        {
+                            d=1;
+                            let heading= document.createElement('h1');
+                            heading.innerHTML="No Result Found";
+                            head.appendChild(heading);
+                        }*/
+            }
+        </script>
+       
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous"></script>
+    </body>
+</html>
