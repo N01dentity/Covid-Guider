@@ -48,7 +48,7 @@
                 <% for(let country of countries){%>
                     <% const c=[]%>
                     <% c.push(country.country)%>
-                <div class="col-lg-3 col-md-6 col-sm-12">
+                <div class="col-lg-3 col-md-6 col-sm-12 select">
             <div class="card mt-3" style="max-height:430px">
                 <img style="max-height:170px" src="<%=country.countryInfo.flag%>" class="card-img-top">
                 <div class="card-body">
@@ -68,15 +68,17 @@
         <%}%>
             </div>
         </div>
-        <div id="head" class="justify-content-center" style="font-weight:bold;align-items:center"></div>
+        <div id="notFound" hidden>
+            <h1 style="text-align: center;">No Result Found</h1>
+        </div>
         <script>
             //const d=0;
             function search()
             {
                 let c=0;
-                let head=document.getElementById('head');
+                let notFound=document.getElementById('notFound');
                 let filter=document.getElementById('search').value.toUpperCase();
-                let cards=document.getElementsByClassName('card');
+                let cards=document.getElementsByClassName('select');
                 for(let i=0;i<cards.length;i++)
                 {
                     let title=cards[i].getElementsByClassName('card-title')[0];
@@ -85,28 +87,30 @@
                         let text=title.innerHTML.toUpperCase();
                         if(text.indexOf(filter)>-1)
                         {
-                        cards[i].style.display="block";
+                        cards[i].hidden=false;
                     }
                     else 
                     {
                             c++;
-                        cards[i].style.display="none";
+                        cards[i].hidden=true;
                         }
                         
                     }
                     
 
                 }
-               /* if(c==cards.length &&d==0)
+                if(c==cards.length)
                         {
-                            d=1;
-                            let heading= document.createElement('h1');
-                            heading.innerHTML="No Result Found";
-                            head.appendChild(heading);
-                        }*/
+                            
+                            //let heading= document.createElement('h1');
+                            //heading.innerHTML="No Result Found";
+                            //head.appendChild(heading);
+                            notFound.hidden=false;
+                        }
+                        else
+                        notFound.hidden=true;
             }
         </script>
-       
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous"></script>
     </body>
 </html>
