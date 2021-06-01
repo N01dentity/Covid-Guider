@@ -48,16 +48,7 @@ app.get("/countryWise/:country",async(req,res)=>{
 .then(r=>{
     console.log(r);
 });*/
-/*async function func()
-{
-    const response= await fetch("https://api.covid19india.org/v4/min/data.min.json");
-    const resp=await response.json();
-    response.then(pp=>{
-        console.log(pp);
 
-    })
-};
-func()*/
 
 const port= process.env.PORT || 4000;
 app.listen(port,()=>
