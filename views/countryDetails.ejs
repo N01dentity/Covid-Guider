@@ -9,9 +9,39 @@
     <body>
         <%-include('./partials/navbar')%>
         <div class="container">
-            <h1 class="text-center">Welcome to <%=states.country%></h1>
+           <!--<h1 class="text-center">Welcome to <%=states.country%></h1>-->
             <br>
             <br>
+            <div class="row">
+                <div class="col-lg-4 col-sm-12">
+                    <div class="d-flex justify-content-center">
+                    <img class="" src="<%=states.countryInfo.flag%>">
+                </div>
+                <br>
+                <h1 class="text-center"><%=states.country%></h1>
+                </div>
+                <div class="col-lg-4 col-sm-6 col-md-6 col-xs-6">
+                   
+                        
+                        <h2 class="text-center">Total Cases:</h2><h1 class="text-primary text-center"style="font-weight:bold;"> <%=states.cases%></h1>
+                        <br>
+                        <h2 class="text-center">Active:</h2><h1 class="text-warning text-center"style="font-weight:bold;"><%=states.active%></h1>
+                        
+                </div>
+                <br>
+                <div class="col-lg-4 col-sm-6 col-md-6 col-xs-6">
+                    
+                        <h2 class="text-center">Total Recovered:</h2><h1 class="text-center" style="font-weight:bold;color:rgb(44, 230, 44);"><%=states.recovered%></h1>
+                        <br>
+                        <h2 class="text-center">Total Deaths:</h2><h1 class="text-danger text-center" style="font-weight:bold;"><%=states.deaths%></h1>
+                   
+                </div>
+            </div>
+            <br>
+            <br>
+            <br>
+            
+            <div class="table-responsive">
             <table class="table table-bordered">
                 <thead>
                     <th>Total Cases</th>
@@ -118,7 +148,7 @@
                 </tbody>
             </table>
         </div>
-
+        </div>
 
         <%-include('./partials/footer')%>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous"></script>
