@@ -28,17 +28,40 @@
         <h1 class="text-center">Welcome to the Corona Virus Update page</h1>
         <br>
         <br>
+        <div id="carouselExampleControls" class="carousel slide container-fluid" style="" data-bs-ride="carousel">
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <img src="https://images.unsplash.com/photo-1583423230902-b653abc541eb?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8Y29yb25hdmlydXN8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" class="d-block w-100 thumbnail" style="height:60%" alt="...">
+              </div>
+              <div class="carousel-item">
+                <img src="https://images.unsplash.com/photo-1584118624012-df056829fbd0?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Y29yb25hdmlydXN8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" class="d-block w-100" alt="...">
+              </div>
+              <div class="carousel-item">
+                <img src="https://images.unsplash.com/photo-1610703415886-ce8a9e6001fc?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjB8fGNvcm9uYXZpcnVzfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" class="d-block w-100" alt="...">
+              </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+          <br>
+          <br>
         <div class="container">
-            <div id="chartContainer" class="mb-5" style="height: 370px; width: 100%;"></div>
+            <!--<div id="chartContainer" class="mb-5" style="height: 370px; width: 100%;"></div>-->
             <button class="btn btn-success btn-sm" onclick="func15()">Last 15 Days</button>
                 <button class="btn btn-success btn-sm" onclick="func6()">Last 6 Months</button>
                 <button class="btn btn-success btn-sm" onclick="funcAll()">ALL</button>
             <div>
                 
-                <canvas id="myChart" style="height:300px;width:600px"></canvas>
-                <canvas id="myChart15" style="height:300px;width:600px"></canvas>
-                <canvas id="myChart6" style="height:300px;width:600px"></canvas>
-                <canvas id="myChartAll" style="height:300px;width:600px"></canvas>
+                <canvas id="myChart" style="height:250px;width:600px"></canvas>
+                <canvas id="myChart15" style="height:250px;width:600px"></canvas>
+                <canvas id="myChart6" style="height:250px;width:600px"></canvas>
+                <canvas id="myChartAll" style="height:250px;width:600px"></canvas>
                
             </div>
             </div>
@@ -57,10 +80,10 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td class="text-primary"style="font-weight:bold;font-size:30px"><%=global.cases%></td>
+                                <td class="text-primary"style="font-weight:bold;font-size:30px"><%=global.cases%><div style="font-weight:lighter;font-size:20px">+<%=global.todayCases%></div></td>
                                 <td class="text-warning"style="font-weight:bold;font-size:30px"><%=global.active%></td>
-                                <td style="font-weight:bold;color:rgb(44, 230, 44);font-size:30px"><%=global.recovered%></td>
-                                <td class="text-danger" style="font-weight:bold;font-size:30px"><%=global.deaths%></td>
+                                <td style="font-weight:bold;color:rgb(44, 230, 44);font-size:30px"><%=global.recovered%><div style="font-weight:lighter;font-size:20px">+<%=global.todayRecovered%></div></td>
+                                <td class="text-danger" style="font-weight:bold;font-size:30px"><%=global.deaths%><div style="font-weight:lighter;font-size:20px">+<%=global.todayDeaths%></div></td>
                             </tr>
                         </tbody>
                     </table>
@@ -78,10 +101,10 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td class="text-primary"style="font-weight:bold;font-size:30px"><%=country.cases%></td>
+                                    <td class="text-primary"style="font-weight:bold;font-size:30px"><%=country.cases%><div style="font-weight:lighter;font-size:20px">+<%=country.todayCases%></div></td>
                                     <td class="text-warning"style="font-weight:bold;font-size:30px"><%=country.active%></td>
-                                    <td style="font-weight:bold;color:rgb(44, 230, 44);font-size:30px"><%=country.recovered%></td>
-                                    <td class="text-danger"style="font-weight:bold;font-size:30px"><%=country.deaths%>
+                                    <td style="font-weight:bold;color:rgb(44, 230, 44);font-size:30px"><%=country.recovered%><div style="font-weight:lighter;font-size:20px">+<%=country.todayRecovered%></div></td>
+                                    <td class="text-danger"style="font-weight:bold;font-size:30px"><%=country.deaths%><div style="font-weight:lighter;font-size:20px">+<%=country.todayDeaths%></div>
                                     </td>
                                    
                                 </tr>
