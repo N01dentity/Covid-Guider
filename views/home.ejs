@@ -30,12 +30,19 @@
         <br>
         <div class="container">
             <div id="chartContainer" class="mb-5" style="height: 370px; width: 100%;"></div>
+            <button class="btn btn-success btn-sm" onclick="func15()">Last 15 Days</button>
+                <button class="btn btn-success btn-sm" onclick="func6()">Last 6 Months</button>
+                <button class="btn btn-success btn-sm" onclick="funcAll()">ALL</button>
             <div>
+                
                 <canvas id="myChart" style="height:300px;width:600px"></canvas>
+                <canvas id="myChart15" style="height:300px;width:600px"></canvas>
+                <canvas id="myChart6" style="height:300px;width:600px"></canvas>
+                <canvas id="myChartAll" style="height:300px;width:600px"></canvas>
                
             </div>
             </div>
-            <br><br><br><br><br><br>
+            <br><br><br><br>
         <div class="container">
             <div class="row">
                 <div class="col-lg-9 col-xs-12">
@@ -184,23 +191,34 @@
                                 {
                                     async function func3()
                                     {
-                                    const response= await fetch("https://api.covid19india.org/data.json");
+                                        let canvas1=document.getElementById('myChart');
+                                        let canvas2=document.getElementById('myChart6');
+                                        let canvas3=document.getElementById('myChart15');
+                                        let canvas4=document.getElementById('myChartAll');
+                                        canvas1.hidden=false;
+                                        canvas2.hidden=true;
+                                        canvas3.hidden=true;
+                                        canvas4.hidden=true;
+                                        const response= await fetch("https://api.covid19india.org/data.json");
                                     const resp=await response.json();
                                     //response.then(pp=>{
+                                        const value=resp.cases_time_series;
                                         let a=[];
                                         let b=[];
-                                        let k=488;
-                                        let j=488;
-                                    console.log(resp.cases_time_series);
-                                    const value=resp.cases_time_series;
+                                        let c=[];
+                                        let k=value.length;
+                                        let j=value.length;
+                                        let l=value.length;
+                                    console.log(value);
                                     for(let i=value.length-1;i>=0;i--)
                                     {
                                         a[k--]=value[i].dailyconfirmed;
                                         b[j--]=value[i].date;
+                                        c[l--]=value[i].dailydeceased;
                                     }
                                     console.log(a);
                                     console.log(b);
-                                
+                                    
                        var ctx = document.getElementById('myChart').getContext('2d');
                                 var myChart = new Chart(ctx, {
                                     type: 'line',
@@ -226,8 +244,10 @@
                                                 'rgba(255, 159, 64, 1)'
                                             ],
                                             borderWidth: 1
-                                        }]
+                                        }],
+                                      
                                     },
+                                     
                                     options: {
                                         scales: {
                                             y: {
@@ -238,6 +258,215 @@
                                 })
                             }
                             func3();
+                            };
+                            async function func15()
+                                    {
+                                        let canvas1=document.getElementById('myChart');
+                                        let canvas2=document.getElementById('myChart6');
+                                        let canvas3=document.getElementById('myChart15');
+                                        let canvas4=document.getElementById('myChartAll');
+                                        canvas1.hidden=true;
+                                        canvas2.hidden=true;
+                                        canvas3.hidden=false;
+                                        canvas4.hidden=true;
+                                    const response= await fetch("https://api.covid19india.org/data.json");
+                                    const resp=await response.json();
+                                    //response.then(pp=>{
+                                        const value=resp.cases_time_series;
+                                        let a=[];
+                                        let b=[];
+                                        let c=[];
+                                        let k=15;
+                                        let j=15;
+                                        let l=15;
+                                    console.log(value);
+                                    for(let i=value.length-1;i>=value.length-15;i--)
+                                    {
+                                        a[k--]=value[i].dailyconfirmed;
+                                        b[j--]=value[i].date;
+                                        c[l--]=value[i].dailydeceased;
+                                    }
+                                    console.log(a);
+                                    console.log(b);
+                                    
+                       var ctx = document.getElementById('myChart15').getContext('2d');
+                                var myChart = new Chart(ctx, {
+                                    type: 'line',
+                                    data: {
+                                        labels: b,
+                                        datasets: [{
+                                            label: 'Number of Cases in India',
+                                            data: a,
+                                            backgroundColor: [
+                                                'rgba(255, 99, 132, 0.2)',
+                                                'rgba(54, 162, 235, 0.2)',
+                                                'rgba(255, 206, 86, 0.2)',
+                                                'rgba(75, 192, 192, 0.2)',
+                                                'rgba(153, 102, 255, 0.2)',
+                                                'rgba(255, 159, 64, 0.2)'
+                                            ],
+                                            borderColor: [
+                                                'rgba(255, 99, 132, 1)',
+                                                'rgba(54, 162, 235, 1)',
+                                                'rgba(255, 206, 86, 1)',
+                                                'rgba(75, 192, 192, 1)',
+                                                'rgba(153, 102, 255, 1)',
+                                                'rgba(255, 159, 64, 1)'
+                                            ],
+                                            borderWidth: 1
+                                        }],
+                                      
+                                    },
+                                     
+                                    options: {
+                                        scales: {
+                                            y: {
+                                                beginAtZero: true
+                                            }
+                                        }
+                                    }
+                                })
+                            
+                            };
+                            async function func6()
+                                    {
+                                        let canvas1=document.getElementById('myChart');
+                                        let canvas2=document.getElementById('myChart6');
+                                        let canvas3=document.getElementById('myChart15');
+                                        let canvas4=document.getElementById('myChartAll');
+                                        canvas1.hidden=true;
+                                        canvas2.hidden=false;
+                                        canvas3.hidden=true;
+                                        canvas4.hidden=true;
+                                        
+                                    const response= await fetch("https://api.covid19india.org/data.json");
+                                    const resp=await response.json();
+                                    //response.then(pp=>{
+                                        const value=resp.cases_time_series;
+                                        let a=[];
+                                        let b=[];
+                                        let c=[];
+                                        let k=180;
+                                        let j=180;
+                                        let l=180;
+                                    console.log(value);
+                                    for(let i=value.length-1;i>=value.length-180;i--)
+                                    {
+                                        a[k--]=value[i].dailyconfirmed;
+                                        b[j--]=value[i].date;
+                                        c[l--]=value[i].dailydeceased;
+                                    }
+                                    console.log(a);
+                                    console.log(b);
+                                    
+                       var ctx = document.getElementById('myChart6').getContext('2d');
+                                var myChart = new Chart(ctx, {
+                                    type: 'line',
+                                    data: {
+                                        labels: b,
+                                        datasets: [{
+                                            label: 'Number of Cases in India',
+                                            data: a,
+                                            backgroundColor: [
+                                                'rgba(255, 99, 132, 0.2)',
+                                                'rgba(54, 162, 235, 0.2)',
+                                                'rgba(255, 206, 86, 0.2)',
+                                                'rgba(75, 192, 192, 0.2)',
+                                                'rgba(153, 102, 255, 0.2)',
+                                                'rgba(255, 159, 64, 0.2)'
+                                            ],
+                                            borderColor: [
+                                                'rgba(255, 99, 132, 1)',
+                                                'rgba(54, 162, 235, 1)',
+                                                'rgba(255, 206, 86, 1)',
+                                                'rgba(75, 192, 192, 1)',
+                                                'rgba(153, 102, 255, 1)',
+                                                'rgba(255, 159, 64, 1)'
+                                            ],
+                                            borderWidth: 1
+                                        }],
+                                      
+                                    },
+                                     
+                                    options: {
+                                        scales: {
+                                            y: {
+                                                beginAtZero: true
+                                            }
+                                        }
+                                    }
+                                })
+                            
+                            };
+                            async function funcAll()
+                                    {
+                                        let canvas1=document.getElementById('myChart');
+                                        let canvas2=document.getElementById('myChart6');
+                                        let canvas3=document.getElementById('myChart15');
+                                        let canvas4=document.getElementById('myChartAll');
+                                        canvas1.hidden=true;
+                                        canvas2.hidden=true;
+                                        canvas3.hidden=true;
+                                        canvas4.hidden=false;
+                                        
+                                    const response= await fetch("https://api.covid19india.org/data.json");
+                                    const resp=await response.json();
+                                    //response.then(pp=>{
+                                        const value=resp.cases_time_series;
+                                        let a=[];
+                                        let b=[];
+                                        let c=[];
+                                        let k=value.length;
+                                        let j=value.length;
+                                        let l=value.length;
+                                    console.log(value);
+                                    for(let i=value.length-1;i>=0;i--)
+                                    {
+                                        a[k--]=value[i].dailyconfirmed;
+                                        b[j--]=value[i].date;
+                                        c[l--]=value[i].dailydeceased;
+                                    }
+                                    console.log(a);
+                                    console.log(b);
+                                    
+                       var ctx = document.getElementById('myChartAll').getContext('2d');
+                                var myChart = new Chart(ctx, {
+                                    type: 'line',
+                                    data: {
+                                        labels: b,
+                                        datasets: [{
+                                            label: 'Number of Cases in India',
+                                            data: a,
+                                            backgroundColor: [
+                                                'rgba(255, 99, 132, 0.2)',
+                                                'rgba(54, 162, 235, 0.2)',
+                                                'rgba(255, 206, 86, 0.2)',
+                                                'rgba(75, 192, 192, 0.2)',
+                                                'rgba(153, 102, 255, 0.2)',
+                                                'rgba(255, 159, 64, 0.2)'
+                                            ],
+                                            borderColor: [
+                                                'rgba(255, 99, 132, 1)',
+                                                'rgba(54, 162, 235, 1)',
+                                                'rgba(255, 206, 86, 1)',
+                                                'rgba(75, 192, 192, 1)',
+                                                'rgba(153, 102, 255, 1)',
+                                                'rgba(255, 159, 64, 1)'
+                                            ],
+                                            borderWidth: 1
+                                        }],
+                                      
+                                    },
+                                     
+                                    options: {
+                                        scales: {
+                                            y: {
+                                                beginAtZero: true
+                                            }
+                                        }
+                                    }
+                                })
+                            
                             };
              </script>
                 <script>
