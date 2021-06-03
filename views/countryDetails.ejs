@@ -42,7 +42,14 @@
             <br>
             <br>
             <div class="container" id="canv">
-                <canvas id="myChart" style="height:250px;width:600px"></canvas>
+                <div class="row">
+                    <div class="col-lg-6 col-md-12 col-sm-12">
+                        <canvas id="myChart"></canvas>
+                    </div>
+                    <div class="col-lg-6 col-md-12 col-sm-12">
+                        <canvas id="myChart2"></canvas>
+                    </div>
+                </div>
             </div>
             <br>
             <br>
@@ -238,6 +245,77 @@
                                 })
                             }
                             func3();
+                            async function func4()
+                    {
+                        /*let canvas1=document.getElementById('myChart');
+                        let canvas2=document.getElementById('myChart6');
+                        let canvas3=document.getElementById('myChart15');
+                        let canvas4=document.getElementById('myChartAll');
+                        canvas1.hidden=false;
+                        canvas2.hidden=true;
+                        canvas3.hidden=true;
+                        canvas4.hidden=true;*/
+                        const coun=document.getElementById('country').innerText;
+                        const country=coun.toLowerCase();
+                        //const response=await fetch(`https://api.covid19api.com/dayone/country/${country}/status/confirmed`);
+                       // const response=await fetch(`https://api.covid19api.com/total/dayone/country/${country}/status/confirmed`)
+                        const response=await fetch(`https://api.covid19api.com/total/dayone/country/${country}`)
+                                    const resp=await response.json();
+                                    //response.then(pp=>{console.log(pp)});
+                                    console.log(resp);
+                                    
+                                       // document.getElementById('canv').hidden=true;
+                                        const value=resp;
+                                        let a=[];
+                                        let b=[];
+                                        let c=[];
+                                        let k=value.length;
+                                        let j=value.length;
+                                        let l=value.length;
+                                    console.log(value[0].Country);
+                                    for(let i=value.length-2;i>0;i--)
+                                    {
+                                        let cases=value[i].Deaths-value[i-1].Deaths;
+                                        if(cases>0)
+                                        {
+                                            a[k--]=cases;
+                                            b[j--]=(new Date(value[i].Date.substring(0,10)).toUTCString()).substring(4,16);
+                                        }
+                                       // c[l--]=value[i].dailydeceased;
+                                    }
+                                    console.log(a);
+                                    console.log(b);
+                               
+                       var ctx = document.getElementById('myChart2').getContext('2d');
+                                var myChart = new Chart(ctx, {
+                                    type: 'line',
+                                    data: {
+                                        labels: b,
+                                        datasets: [{
+                                            label: `Number of Deaths in ${coun}`,
+                                            data: a,
+                                            backgroundColor: [
+                                                
+                                            ],
+                                            borderColor: [
+                                                
+                                            ],
+                                            borderWidth: 1
+                                        }],
+                                      
+                                    },
+                                     
+                                    options: {
+                                        scales: {
+                                            y: {
+                                                
+                                                beginAtZero: true
+                                            }
+                                        }
+                                    }
+                                })
+                            }
+                            func4();
                             };
             
         </script>
