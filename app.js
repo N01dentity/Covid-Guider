@@ -15,10 +15,11 @@ app.set("views",path.join(__dirname,"views"));
 app.get("/",async(req,res)=>{
     const global=await api.all();
     const country=await api.countries({country:'india'});
+    const eachCountry=await api.countries();
     const state=api.gov('india');
     state.then(r=>{
 
-        res.render("home",{global,country,r});
+        res.render("home",{global,country,r,eachCountry});
     })
 });
 
@@ -44,7 +45,7 @@ app.get("/countryWise/:country",async(req,res)=>{
     res.render("countryDetails",{states,yesterday,twoDaysAgo});
 });
 
-/*api.yesterday.gov('india')
+/*api.all()
 .then(r=>{
     console.log(r);
 });*/
