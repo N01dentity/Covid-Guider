@@ -5,23 +5,44 @@
             Country Wise 
         </title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
-        <style>
-            /*body{
-                background: url("https://m.economictimes.com/thumb/msid-74665367,width-1200,height-900,resizemode-4,imgsize-980841/from-the-trumpet-shaped-protrusion-at-the-centre-of-a-daffodil-or-narcissus-to-a-part-of-a-cornice-with-a-vertical-face-to-the-most-popular-shape-of-chandeliers-corona-has-long-been-an-acceptable-part-of-society-.jpg");
-            }*/
-        </style>
+    
             <script src='https://api.mapbox.com/mapbox-gl-js/v2.3.0/mapbox-gl.js'></script>
             <link href='https://api.mapbox.com/mapbox-gl-js/v2.3.0/mapbox-gl.css' rel='stylesheet' />
             <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoder.min.js"></script>
             <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoder.css" type="text/css">
             <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.min.js"></script>
             <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.min.js"></script>
+            <!--<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+            integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+            crossorigin=""/>
+            <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+                integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+                crossorigin=""></script>-->
+            <style>
+                #map{
+                    height:450px;
+                }
+            </style>
+
     </head>
     <body>
         <%- include('./partials/navbar')%>
-        <a href="/">Home</a>
-            <div id="cluster-map"></div>
-            <div class="container">
+        <div id="map"class="mt-auto"></div>
+        <div id="menu">
+            <input id="satellite-v9" type="radio" name="rtoggle" value="satellite" >
+            <!-- See a list of Mapbox-hosted public styles at -->
+            <!-- https://docs.mapbox.com/api/maps/styles/#mapbox-styles -->
+            <label for="satellite-v9">satellite</label>
+            <input id="light-v10" type="radio" name="rtoggle" value="light">
+            <label for="light-v10">light</label>
+            <input id="dark-v10" type="radio" name="rtoggle" value="dark">
+            <label for="dark-v10">dark</label>
+            <input id="streets-v11" type="radio" name="rtoggle" value="streets" checked>
+            <label for="streets-v11">streets</label>
+            <input id="outdoors-v11" type="radio" name="rtoggle" value="outdoors">
+            <label for="outdoors-v11">outdoors</label>
+            </div>
+        <div class="container">
             <h1 class="text-center">Country Wise Covid Update</h1>
             <br>
             <input type="search" id="search" class="d-flex justify-content-center" placeholder="Search your country" onkeyup="search()">
@@ -94,11 +115,34 @@
         <script>
               mapboxgl.accessToken = 'pk.eyJ1IjoiZ29vZGRheTIzNDU5IiwiYSI6ImNrbXFnb2l0ajBxNnEybnQ5M3p1YXBjZTQifQ.35ze5PJXpYxn2wTBx0m0nw';
                 var map = new mapboxgl.Map({
-                container: 'cluster-map', // container ID
+                container: 'map', // container ID
                 style: 'mapbox://styles/mapbox/streets-v11', // style URL
-                center: [-74.5, 40], // starting position [lng, lat]
-                zoom: 9 // starting zoom
+                center: [78.9629,20.5937], // starting position [lng, lat]
+                zoom: 3 // starting zoom
                 });
+                map.addControl(new mapboxgl.NavigationControl());
+                var layerList = document.getElementById('menu');
+                    var inputs = layerList.getElementsByTagName('input');
+                    
+                    function switchLayer(layer) {
+                    var layerId = layer.target.id;
+                    map.setStyle('mapbox://styles/mapbox/' + layerId);
+                    }
+                    
+                    for (var i = 0; i < inputs.length; i++) {
+                    inputs[i].onclick = switchLayer;
+                    }
+
+                    /* var map = L.map('map', {
+                        center: [51.505, -0.09],
+                        zoom: 13
+                    });
+                    L.tileLayer('https://api.maptiler.com/maps/streets/{z}/{x}/{y}.png?key=xCbrJCoyl3yTdsVJvKBE',
+                    {
+                        attribution:'<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>'
+
+                    }).addTo(map);*/
+                    /*var mymap = L.map('map').setView([51.505, -0.09], 13);*/
         </script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous"></script>
     </body>
