@@ -22,6 +22,16 @@ app.get("/",async(req,res)=>{
         res.render("home",{global,country,r,eachCountry});
     })
 });
+app.get("/home2",async(req,res)=>{
+    const global=await api.all();
+    const country=await api.countries({country:'india'});
+    const eachCountry=await api.countries();
+    const state=api.gov('india');
+    state.then(r=>{
+
+        res.render("home2",{global,country,r,eachCountry});
+    })
+});
 
 app.get("/stateWise",async(req,res)=>{
     const global=await api.all();
@@ -43,6 +53,9 @@ app.get("/countryWise/:country",async(req,res)=>{
     const yesterday=await api.yesterday.countries({country:country});
     const twoDaysAgo=await api.twoDaysAgo.countries({country:country});
     res.render("countryDetails",{states,yesterday,twoDaysAgo});
+});
+app.get("/vaccination",async(req,res)=>{
+    res.render("vaccination");
 });
 
 /*api.all()
