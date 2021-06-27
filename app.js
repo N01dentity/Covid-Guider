@@ -57,6 +57,14 @@ app.get("/countryWise/:country",async(req,res)=>{
 app.get("/vaccination",async(req,res)=>{
     res.render("vaccination");
 });
+app.get("/abcd",async(req,res)=>{
+    res.json({message:"Hi"});
+})
+app.get("/countryWiseJson",async(req,res)=>{
+    const state= await api.gov();
+    const countries= await api.countries({sort:'cases'});
+    res.json({countries,state});
+});
 
 /*api.all()
 .then(r=>{

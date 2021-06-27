@@ -262,7 +262,10 @@
                             td5.classList.add("notAvailable");
                             }
                             else
-                            td5.classList.add("available")
+                            {
+                            td5.classList.add("available");
+                            td5.innerHTML=`<a style="color:rgb(67, 214, 67)" href="https://selfregistration.cowin.gov.in/">`+i.available_capacity_dose1+`+</a>`
+                            }
                             tr.appendChild(td5);
                             let td6=document.createElement('td');
                             td6.innerHTML=i.available_capacity_dose2+"+";
@@ -272,7 +275,11 @@
                                 td6.classList.add("notAvailable")
                             }
                             else
-                            td6.classList.add("available")
+                            {
+                                td6.classList.add("available");
+                                td6.innerHTML=`<a style="color:rgb(67, 214, 67)" href="https://selfregistration.cowin.gov.in/">`+i.available_capacity_dose2+`+</a>`
+
+                            }
                             tr.appendChild(td6);
                             let td7=document.createElement('td');
                             td7.innerHTML=i.vaccine;
@@ -418,7 +425,11 @@
                             td5.classList.add("notAvailable");
                             }
                             else
-                            td5.classList.add("available")
+                            {
+                                td5.classList.add("available");
+                                td5.innerHTML=`<a style="color:rgb(67, 214, 67)" href="https://selfregistration.cowin.gov.in/">`+i.available_capacity_dose1+`+</a>`
+
+                            }
                             tr.appendChild(td5);
                             let td6=document.createElement('td');
                             td6.innerHTML=i.available_capacity_dose2+"+";
@@ -428,7 +439,10 @@
                                 td6.classList.add("notAvailable")
                             }
                             else
-                            td6.classList.add("available")
+                            {
+                                td6.classList.add("available")
+                                td6.innerHTML=`<a style="color:rgb(67, 214, 67)" href="https://selfregistration.cowin.gov.in/">`+i.available_capacity_dose2+`+</a>`
+                            }
                             tr.appendChild(td6);
                             let td7=document.createElement('td');
                             td7.innerHTML=i.vaccine;
