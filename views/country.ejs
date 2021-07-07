@@ -1,35 +1,41 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>
-            Country Wise 
-        </title>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
-    
-            <script src='https://api.mapbox.com/mapbox-gl-js/v2.3.0/mapbox-gl.js'></script>
-            <link href='https://api.mapbox.com/mapbox-gl-js/v2.3.0/mapbox-gl.css' rel='stylesheet' />
-            <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoder.min.js"></script>
-            <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoder.css" type="text/css">
-            <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.min.js"></script>
-            <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.min.js"></script>
-            <!--<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+
+<head>
+    <title>
+        Country Wise
+    </title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+
+    <script src='https://api.mapbox.com/mapbox-gl-js/v2.3.0/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.3.0/mapbox-gl.css' rel='stylesheet' />
+    <script
+        src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoder.min.js"></script>
+    <link rel="stylesheet"
+        href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoder.css"
+        type="text/css">
+    <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.min.js"></script>
+    <!--<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
             integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
             crossorigin=""/>
             <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
                 integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
                 crossorigin=""></script>-->
-            <style>
-                #map{
-                    height:450px;
-                }
-            </style>
+    <style>
+        #map {
+            height: 450px;
+        }
+    </style>
 
-    </head>
-    <body>
-        <%- include('./partials/navbar')%>
-        <div id="map"class="mt-auto"></div>
+</head>
+
+<body>
+    <%- include('./partials/navbar')%>
+        <div id="map" class="mt-auto"></div>
         <div id="menu">
-            <input id="satellite-v9" type="radio" name="rtoggle" value="satellite" >
+            <input id="satellite-v9" type="radio" name="rtoggle" value="satellite">
             <!-- See a list of Mapbox-hosted public styles at -->
             <!-- https://docs.mapbox.com/api/maps/styles/#mapbox-styles -->
             <label for="satellite-v9">satellite</label>
@@ -41,32 +47,44 @@
             <label for="streets-v11">streets</label>
             <input id="outdoors-v11" type="radio" name="rtoggle" value="outdoors">
             <label for="outdoors-v11">outdoors</label>
-            </div>
+        </div>
         <div class="container">
-            <h1 class="text-center">Country Wise Covid Update</h1>
+            <h1 class="text-center" style="font-family: cursive;">Country Wise Covid Update</h1>
             <br>
-            <input type="search" id="search" class="d-flex justify-content-center" placeholder="Search your country" onkeyup="search()">
+            <input type="search" id="search" class="d-flex justify-content-center" placeholder="Search your country"
+                onkeyup="search()">
             <br>
             <div class="row" id="find">
                 <% for(let country of countries){%>
-                <div class="col-lg-3 col-md-6 col-sm-12 select">
-            <div class="card mt-3" style="max-height:430px">
-                <img style="max-height:170px" src="<%=country.countryInfo.flag%>" class="card-img-top">
-                <div class="card-body">
-                    <h5 class="card-title text-center"><%=country.country%></h5>
-                    <div class="card-text">
-                        <p><strong>Total Cases : </strong><%=country.cases%></p>
-                        <p><strong>Total Active : </strong><%=country.active%></p>
-                        <p><strong>Total recovered : </strong><%=country.recovered%></p>
-                        <p><strong>Total Deaths : </strong><%=country.deaths%></p>
+                    <div class="col-lg-3 col-md-6 col-sm-12 select">
+                        <div class="card mt-3" style="max-height:430px">
+                            <img style="max-height:170px" src="<%=country.countryInfo.flag%>" class="card-img-top">
+                            <div class="card-body">
+                                <h5 class="card-title text-center">
+                                    <%=country.country%>
+                                </h5>
+                                <div class="card-text">
+                                    <p><strong>Total Cases : </strong>
+                                        <%=country.cases%>
+                                    </p>
+                                    <p><strong>Total Active : </strong>
+                                        <%=country.active%>
+                                    </p>
+                                    <p><strong>Total recovered : </strong>
+                                        <%=country.recovered%>
+                                    </p>
+                                    <p><strong>Total Deaths : </strong>
+                                        <%=country.deaths%>
+                                    </p>
+                                </div>
+                                <div class="d-flex justify-content-center mt-2">
+                                    <a href="/countryWise/<%=country.country%>" style="width:150px"
+                                        class="btn btn-primary">Details</a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="d-flex justify-content-center mt-2">
-                    <a href="/countryWise/<%=country.country%>" style="width:150px" class="btn btn-primary">Details</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <%}%>
+                    <%}%>
             </div>
         </div>
         <div id="notFound" hidden>
@@ -74,76 +92,103 @@
         </div>
         <script>
             //const d=0;
-            function search()
-            {
-                let c=0;
-                let notFound=document.getElementById('notFound');
-                let filter=document.getElementById('search').value.toUpperCase();
-                let cards=document.getElementsByClassName('select');
-                for(let i=0;i<cards.length;i++)
-                {
-                    let title=cards[i].getElementsByClassName('card-title')[0];
-                    if(title)
-                    {
-                        let text=title.innerHTML.toUpperCase();
-                        if(text.indexOf(filter)>-1)
-                        {
-                        cards[i].hidden=false;
-                    }
-                    else 
-                    {
+            function search() {
+                let c = 0;
+                let notFound = document.getElementById('notFound');
+                let filter = document.getElementById('search').value.toUpperCase();
+                let cards = document.getElementsByClassName('select');
+                for (let i = 0; i < cards.length; i++) {
+                    let title = cards[i].getElementsByClassName('card-title')[0];
+                    if (title) {
+                        let text = title.innerHTML.toUpperCase();
+                        if (text.indexOf(filter) > -1) {
+                            cards[i].hidden = false;
+                        }
+                        else {
                             c++;
-                        cards[i].hidden=true;
+                            cards[i].hidden = true;
                         }
-                        
-                    }
-                    
 
+                    }
                 }
-                if(c==cards.length)
-                        {
-                            
-                            //let heading= document.createElement('h1');
-                            //heading.innerHTML="No Result Found";
-                            //head.appendChild(heading);
-                            notFound.hidden=false;
-                        }
-                        else
-                        notFound.hidden=true;
+                if (c == cards.length)
+                    notFound.hidden = false;
+                else
+                    notFound.hidden = true;
             }
         </script>
         <script>
-              mapboxgl.accessToken = 'pk.eyJ1IjoiZ29vZGRheTIzNDU5IiwiYSI6ImNrbXFnb2l0ajBxNnEybnQ5M3p1YXBjZTQifQ.35ze5PJXpYxn2wTBx0m0nw';
-                var map = new mapboxgl.Map({
+            mapboxgl.accessToken = 'pk.eyJ1IjoiZ29vZGRheTIzNDU5IiwiYSI6ImNrbXFnb2l0ajBxNnEybnQ5M3p1YXBjZTQifQ.35ze5PJXpYxn2wTBx0m0nw';
+            var map = new mapboxgl.Map({
                 container: 'map', // container ID
                 style: 'mapbox://styles/mapbox/streets-v11', // style URL
-                center: [78.9629,20.5937], // starting position [lng, lat]
+                center: [78.9629, 20.5937], // starting position [lng, lat]
                 zoom: 3 // starting zoom
-                });
-                map.addControl(new mapboxgl.NavigationControl());
-                var layerList = document.getElementById('menu');
-                    var inputs = layerList.getElementsByTagName('input');
-                    
-                    function switchLayer(layer) {
-                    var layerId = layer.target.id;
-                    map.setStyle('mapbox://styles/mapbox/' + layerId);
-                    }
-                    
-                    for (var i = 0; i < inputs.length; i++) {
-                    inputs[i].onclick = switchLayer;
-                    }
+            });
+            map.addControl(new mapboxgl.NavigationControl());
+            var layerList = document.getElementById('menu');
+            var inputs = layerList.getElementsByTagName('input');
 
-                    /* var map = L.map('map', {
-                        center: [51.505, -0.09],
-                        zoom: 13
-                    });
-                    L.tileLayer('https://api.maptiler.com/maps/streets/{z}/{x}/{y}.png?key=xCbrJCoyl3yTdsVJvKBE',
-                    {
-                        attribution:'<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>'
+            function switchLayer(layer) {
+                var layerId = layer.target.id;
+                map.setStyle('mapbox://styles/mapbox/' + layerId);
+            }
 
-                    }).addTo(map);*/
-                    /*var mymap = L.map('map').setView([51.505, -0.09], 13);*/
+            for (var i = 0; i < inputs.length; i++) {
+                inputs[i].onclick = switchLayer;
+            }
+            /*var popup=new magboxgl.Popup()
+                    popup.setLngLat([-103.59179687498357, 40.66995747013945])
+                    .setHTML(`<h2>Hey There ! Whats up!!!</h2>`)
+                    .addTo(map);*/
+            async function countryData() {
+                const response = await fetch("https://disease.sh/v3/covid-19/countries");
+                const resp = response.json();
+                resp.then(r => {
+                    //console.log(r[10]);
+                    for (let i = 0; i < r.length; i++) {
+                        //console.log(r[i].country);
+                        let long = r[i].countryInfo.long;
+                        let lat = r[i].countryInfo.lat;
+                        //let coordinates = { long, lat };
+                        let color = "", cases = r[i].cases;
+                        if (cases >= 1000000)
+                            color = "red";
+                        /*else if(cases<10000000 && cases>=5000000)
+                            color="rgb(232, 53, 62)";*/
+                        else if (cases < 1000000 && cases >= 700000)
+                            color = "rgb(232, 97, 104)";
+                        else if (cases < 7000000 && cases >= 500000)
+                            color = "rgb(186, 86, 93)";
+                        else if (cases < 500000 && cases >= 200000)
+                            color = "rgb(240, 122, 130)"
+                        else if (cases < 200000 && cases >= 100000)
+                            color = "rgb(219, 127, 133)"
+                        else if (cases < 100000 && cases >= 70000)
+                            color = "rgb(222, 149, 153)"
+                        else if (cases < 70000 && cases >= 50000)
+                            color = "rgb(214, 159, 162)"
+                        else
+                            color = "rgb(227, 172, 176)";
+                        new mapboxgl.Marker({
+                            color: color,
+                            draggable: false
+                        }).setLngLat([long, lat])
+                            .addTo(map);
+                    }
+                    map.on('click', function (e) {
+                        console.log('click', e.lngLat);
+                    })
+
+                })
+            }
+            countryData();
+
+
         </script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous"></script>
-    </body>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8"
+            crossorigin="anonymous"></script>
+</body>
+
 </html>

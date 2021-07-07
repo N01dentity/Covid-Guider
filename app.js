@@ -10,7 +10,7 @@ api.settings(
 )
 app.set("view engine","ejs");
 app.set("views",path.join(__dirname,"views"));
-
+app.use(express.static(__dirname + '/public'));
 
 app.get("/",async(req,res)=>{
     const global=await api.all();
@@ -55,6 +55,15 @@ app.get("/countryWise/:country",async(req,res)=>{
     res.render("countryDetails",{states,yesterday,twoDaysAgo});
 });
 app.get("/vaccination",async(req,res)=>{
+    /*const response=await fetch("https://disease.sh/v3/covid-19/vaccine/coverage/countries?lastdays=30&fullData=true");
+    const resp=await response.json();
+    resp.then(r=>{
+        console.log(r);
+
+    })
+    resp.catch(e=>{
+        console.log("Error");
+    })*/
     res.render("vaccination");
 });
 app.get("/abcd",async(req,res)=>{
@@ -65,7 +74,9 @@ app.get("/countryWiseJson",async(req,res)=>{
     const countries= await api.countries({sort:'cases'});
     res.json({countries,state});
 });
-
+app.get("/guidelines",async(req,res)=>{
+    res.render("guidelines");
+})
 /*api.all()
 .then(r=>{
     console.log(r);
@@ -75,5 +86,5 @@ app.get("/countryWiseJson",async(req,res)=>{
 const port= process.env.PORT || 4000;
 app.listen(port,()=>
 {
-    console.log("Server Ready on port 4000");
+    console.log(`Server Ready on port ${port}`);
 });

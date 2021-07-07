@@ -25,6 +25,7 @@
                    
                         
                         <h2 class="text-center">Total Cases:</h2><h1 class="text-primary text-center"style="font-weight:bold;"> <%=states.cases%></h1>
+                        <h4 class="text-primary text-center"style="font-weight:bold;"><%=states.todayCases%>+</h4>
                         <br>
                         <h2 class="text-center">Active:</h2><h1 class="text-warning text-center"style="font-weight:bold;"><%=states.active%></h1>
                         
@@ -33,8 +34,10 @@
                 <div class="col-lg-4 col-sm-6 col-md-6 col-xs-6">
                     
                         <h2 class="text-center">Total Recovered:</h2><h1 class="text-center" style="font-weight:bold;color:rgb(44, 230, 44);"><%=states.recovered%></h1>
+                        <h4 class="text-center" style="font-weight:bold;color:rgb(44, 230, 44);"><%=states.todayRecovered%>+</h4>
                         <br>
                         <h2 class="text-center">Total Deaths:</h2><h1 class="text-danger text-center" style="font-weight:bold;"><%=states.deaths%></h1>
+                        <h4 class="text-center text-danger" style="font-weight:bold;"><%=states.todayDeaths%>+</h4>
                    
                 </div>
             </div>
@@ -54,6 +57,7 @@
             <br>
             <br>
             <div class="table-responsive">
+                <h2 class="text-center">Today's Data</h2>
             <table class="table table-bordered">
                 <thead>
                     <th>Total Cases</th>
@@ -72,12 +76,12 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td style="color:orange"><%=states.cases%></td>
-                        <td style="color:orange"><span style="color:orange">+</span><%=states.todayCases%></td>
-                        <td style="color:rgb(30, 240, 30)"><%=states.recovered%></td>
-                        <td style="color:rgb(30, 240, 30)"S><span style="color:rgb(30, 240, 30)">+</span><%=states.todayRecovered%></td>
-                        <td class="text-danger"><%=states.deaths%></td>
-                        <td class="text-danger"><span style="color:red">+</span><%=states.todayDeaths%></td>
+                        <td style="color:rgb(0, 17, 255);font-weight:bold;"><%=states.cases%></td>
+                        <td style="color:rgb(0,17,255);font-weight:bold;"><span style="color:rgb(0, 17, 255)">+</span><%=states.todayCases%></td>
+                        <td style="color:rgb(30, 240, 30);font-weight: bold;"><%=states.recovered%></td>
+                        <td style="color:rgb(30, 240, 30);font-weight:bold;"><span style="color:rgb(30, 240, 30)">+</span><%=states.todayRecovered%></td>
+                        <td class="text-danger" style="font-weight:bold;"><%=states.deaths%></td>
+                        <td class="text-danger" style="font-weight:bold;"><span style="color:red">+</span><%=states.todayDeaths%></td>
                         <td><%=states.active%></td>
                         <td><%=states.critical%></td>
                         <td><%=states.casesPerOneMillion%></td>
@@ -89,6 +93,7 @@
                 <tr>Updated: <%=new Date(states.updated)%></tr>
                 </tbody>
             </table>
+            <h2 class="text-center">Yesterday's Data</h2>
             <table class="table table-bordered">
                 <thead>
                     <th>Total Cases</th>
@@ -107,12 +112,12 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td style="color:orange"><%=yesterday.cases%></td>
-                        <td style="color:orange"><span style="color:orange">+</span><%=yesterday.todayCases%></td>
-                        <td style="color:rgb(30, 240, 30)"><%=yesterday.recovered%></td>
-                        <td style="color:rgb(30, 240, 30)"S><span style="color:rgb(30, 240, 30)">+</span><%=yesterday.todayRecovered%></td>
-                        <td class="text-danger"><%=yesterday.deaths%></td>
-                        <td class="text-danger"><span style="color:red">+</span><%=yesterday.todayDeaths%></td>
+                        <td style="color:rgb(0, 17, 255);font-weight: bold;"><%=yesterday.cases%></td>
+                        <td style="color:rgb(0, 17, 255);font-weight: bold;"><span style="color:rgb(0, 17, 255)">+</span><%=yesterday.todayCases%></td>
+                        <td style="color:rgb(30, 240, 30);font-weight: bold;"><%=yesterday.recovered%></td>
+                        <td style="color:rgb(30, 240, 30);font-weight: bold;"><span style="color:rgb(30, 240, 30)">+</span><%=yesterday.todayRecovered%></td>
+                        <td class="text-danger" style="font-weight: bold;"><%=yesterday.deaths%></td>
+                        <td class="text-danger"style="font-weight: bold;"><span style="color:red">+</span><%=yesterday.todayDeaths%></td>
                         <td><%=yesterday.active%></td>
                         <td><%=yesterday.critical%></td>
                         <td><%=yesterday.casesPerOneMillion%></td>
@@ -121,44 +126,9 @@
                         <td><%=yesterday.testsPerOneMillion%></td>
                         <td><%=yesterday.population%></td>
                     </tr>
-                    <tr><%=yesterday.updated%></tr>
                 </tbody>
             </table>
-            <table class="table table-bordered">
-                <thead>
-                    <th>Total Cases</th>
-                    <th>Today Cases</th>
-                    <th>Total Recovered</th>
-                    <th>Today Recovered</th>
-                    <th>Total Deaths</th>
-                    <th>Today Deaths</th>
-                    <th>Active</th>
-                    <th>Critical</th>
-                    <th>Cases per Million</th>
-                    <th>Deaths per Million</th>
-                    <th>Tests Done</th>
-                    <th>Test per Million</th>
-                    <th>Population</th>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td style="color:orange"><%=twoDaysAgo.cases%></td>
-                        <td style="color:orange"><span style="color:orange">+</span><%=twoDaysAgo.todayCases%></td>
-                        <td style="color:rgb(30, 240, 30)"><%=twoDaysAgo.recovered%></td>
-                        <td style="color:rgb(30, 240, 30)"S><span style="color:rgb(30, 240, 30)">+</span><%=twoDaysAgo.todayRecovered%></td>
-                        <td class="text-danger"><%=twoDaysAgo.deaths%></td>
-                        <td class="text-danger"><span style="color:red">+</span><%=twoDaysAgo.todayDeaths%></td>
-                        <td><%=twoDaysAgo.active%></td>
-                        <td><%=twoDaysAgo.critical%></td>
-                        <td><%=twoDaysAgo.casesPerOneMillion%></td>
-                        <td><%=twoDaysAgo.deathsPerOneMillion%></td>
-                        <td><%=twoDaysAgo.tests%></td>
-                        <td><%=twoDaysAgo.testsPerOneMillion%></td>
-                        <td><%=twoDaysAgo.population%></td>
-                    </tr>
-                    <tr><%=twoDaysAgo.updated%></tr>
-                </tbody>
-            </table>
+            
         </div>
         </div>
         <script>

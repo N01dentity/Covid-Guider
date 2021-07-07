@@ -1,16 +1,19 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>
-            Covid Guider
-        </title>
-        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+
+<head>
+    <title>
+        Covid Guider
+    </title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.3.2/dist/chart.min.js"></script>
     <style>
-        .mystyle{
-            display:none;
+        .mystyle {
+            display: none;
         }
+
         /*.change{
             content:"Hide";
         }
@@ -18,141 +21,178 @@
             position:absolute;
             content: "Hide all states of India";
         }*/
-        .toggle{
-            display:contents;
-        }
     </style>
-    </head>
-    
-    <body onload="func3()">
-        <%-include('./partials/navbar')%>
-        
+</head>
+
+<body onload="func3()">
+    <%-include('./partials/navbar')%>
+
         <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    
-                    <img style="height:500px" src="https://images.unsplash.com/photo-1584118624012-df056829fbd0?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Y29yb25hdmlydXN8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" class="d-block w-100" alt="...">
-                    
+
+                    <img style="height:500px"
+                        src="https://images.unsplash.com/photo-1584118624012-df056829fbd0?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Y29yb25hdmlydXN8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+                        class="d-block w-100" alt="...">
+
                 </div>
                 <div class="carousel-item">
-                    <img style="height:500px" src="https://images.unsplash.com/photo-1584483766114-2cea6facdf57?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mzl8fGNvcm9uYXZpcnVzfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" class="d-block w-100" alt="...">
+                    <img style="height:500px"
+                        src="https://images.unsplash.com/photo-1584483766114-2cea6facdf57?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mzl8fGNvcm9uYXZpcnVzfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+                        class="d-block w-100" alt="...">
                 </div>
             </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
+                data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Previous</span>
             </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
+                data-bs-slide="next">
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Next</span>
             </button>
         </div>
-        <marquee style="font-weight:bold;color:rgb(209, 35, 35)">!!!!Live Covid 19 update across the world. Lockdown in West Bengal extended till 1st JULY!!!!</marquee>
-        <h1 class="text-center">Welcome to Covid Guider</h1>
+        <marquee style="font-weight:bold;color:rgb(209, 35, 35)">!!!!Live Covid 19 update across the world. Lockdown in
+            West Bengal extended till 15th JULY!!!!</marquee>
+        <h1 class="text-center" style="font-family:cursive">Welcome to Covid Guider</h1>
         <br>
-          <br>
+        <br>
         <div class="container">
             <!--<div id="chartContainer" class="mb-5" style="height: 370px; width: 100%;"></div>-->
-            <button class="btn btn-success d-flex justify-content-end" id="compareCountries" onclick="compareAndToggle()">Compare Countries</button>
             <br>
-            <div class="col-lg-12 toggle" id="graphsCompare1">
-                <div class="card">
-                    <div class="card-body">
-                    <button class="btn btn-success btn-sm" onclick="func15()">Last 15 Days</button>
-                    <button class="btn btn-success btn-sm" onclick="func6()">Last 6 Months</button>
-                    <button class="btn btn-success btn-sm" onclick="funcAll()">ALL</button>
-                    <div class="d-flex justify-content-end"><select id="selectCountry" onchange="selectCountry()">
-                        <option>Select Country</option>
-                        <%for(let g of eachCountry){%>
-                            <option value="<%=g.country%>"><%=g.country%></option>
-                            <%}%>
-                        </select></div>
+            <div class="row">
+                <div class="col-lg-6 col-sm-12" id="graphsCompare1">
+                    <div class="card">
+                        <div class="card-body">
+                            <button class="btn btn-success btn-sm" onclick="func15()">Last 15 Days</button>
+                            <button class="btn btn-success btn-sm" onclick="func6()">Last 6 Months</button>
+                            <button class="btn btn-success btn-sm" onclick="funcAll()">ALL</button>
+                            <button class="btn btn-danger btn-sm" id="deathButton" hidden onclick="deathGraphVisible()">Deaths in india</button>
                             <h3 class="text-center" id="header"></h3>
                         </div>
-            <div class="card-body">
-                
-                <canvas id="myChart" style="height:400px;width:600px"></canvas>
-                <canvas id="myChart15" style="height:400px;width:600px"></canvas>
-                <canvas id="myChart6" style="height:400px;width:600px"></canvas>
-                <canvas id="myChartAll" style="height:400px;width:600px"></canvas>
-                <canvas id="myChartCountry" style="height:400px;width:600px"></canvas>
-               
-            </div>
-            </div>
-            </div>
-            <div class="col-lg-12 toggle" id="graphsCompare2" hidden>
-                <div class="card">
-                    <div class="card-body">
-                    <div class="d-flex justify-content-end"><select id="selectCountry2" onchange="compareCountry()">
-                        <option>Select Country</option>
-                        <%for(let g of eachCountry){%>
-                            <option value="<%=g.country%>"><%=g.country%></option>
-                            <%}%>
-                        </select></div>
-                            <h3 class="text-center" id="header"></h3>
+                        <div class="card-body">
+
+                            <canvas id="myChart" style="height:400px;width:600px"></canvas>
+                            <canvas id="myChart15" style="height:400px;width:600px"></canvas>
+                            <canvas id="myChart6" style="height:400px;width:600px"></canvas>
+                            <canvas id="myChartAll" style="height:400px;width:600px"></canvas>
+                            <!--<canvas id="myChartCountry" style="height:400px;width:600px"></canvas>-->
+
                         </div>
-            <div class="card-body">
-                
-                <canvas id="myChart7" style="height:400px;width:600px"></canvas>
-               
-            </div>
-            </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-sm-12" id="graphsCompare2">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-end"><select id="selectCountry2"
+                                    onchange="compareCountry()">
+                                    <option>Select Country</option>
+                                    <%for(let g of eachCountry){%>
+                                        <option value="<%=g.country%>">
+                                            <%=g.country%>
+                                        </option>
+                                        <%}%>
+                                </select></div>
+                            <h3 class="text-center" id="header2"></h3>
+                        </div>
+                        <div class="card-body">
+
+                            <canvas id="myChart7" style="height:400px;width:600px"></canvas>
+                            <canvas id="myChart8" style="height:400px;width:600px"></canvas>
+
+                        </div>
+                    </div>
+                </div>
             </div>
             <br><br><br>
-            <a href="/vaccination" class="btn btn-primary btn-lg">Vaccination Details</a>
-            <br>
-            <br>
             <div class="card">
                 <div class="card-body">
                     <div class="container">
-            <div class="row">
-                <div class="col-lg-12 col-xs-12">
-                    <h3>World</h3>
-                    <div class="table-responsive">
-                    <table class="table">
-                        <thead>
-                            <th>Total Cases</th>
-                            <th>Total Active</th>
-                            <th>Total Recovered</th>
-                            <th>Total Deaths</th>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td class="text-primary"style="font-weight:bold;font-size:30px"><%=global.cases%><div style="font-weight:lighter;font-size:20px">+<%=global.todayCases%></div></td>
-                                <td class="text-warning"style="font-weight:bold;font-size:30px"><%=global.active%></td>
-                                <td style="font-weight:bold;color:rgb(44, 230, 44);font-size:30px"><%=global.recovered%><div style="font-weight:lighter;font-size:20px">+<%=global.todayRecovered%></div></td>
-                                <td class="text-danger" style="font-weight:bold;font-size:30px"><%=global.deaths%><div style="font-weight:lighter;font-size:20px">+<%=global.todayDeaths%></div></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    </div>
-                    <a class="btn btn-primary d-flex justify-content-center" href="/countryWise">View All Country</a>
-                    <br>
-                    <h3>India</h3>
-                    <div class="table-responsive">
-                    <table class="table">
-                        <thead>
-                                    <th>Total Cases</th>
-                                    <th>Total Active</th>
-                                    <th>Total Recovered</th>
-                                    <th>Total Deaths</th>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td class="text-primary"style="font-weight:bold;font-size:30px"><%=country.cases%><div style="font-weight:lighter;font-size:20px">+<%=country.todayCases%></div></td>
-                                    <td class="text-warning"style="font-weight:bold;font-size:30px"><%=country.active%></td>
-                                    <td style="font-weight:bold;color:rgb(44, 230, 44);font-size:30px"><%=country.recovered%><div style="font-weight:lighter;font-size:20px">+<%=country.todayRecovered%></div></td>
-                                    <td class="text-danger"style="font-weight:bold;font-size:30px"><%=country.deaths%><div style="font-weight:lighter;font-size:20px">+<%=country.todayDeaths%></div>
-                                    </td>
-                                   
+                        <div class="row">
+                            <div class="col-lg-12 col-xs-12">
+                                <h3>World</h3>
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                            <th>Total Cases</th>
+                                            <th>Total Active</th>
+                                            <th>Total Recovered</th>
+                                            <th>Total Deaths</th>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="text-primary" style="font-weight:bold;font-size:30px">
+                                                    <%=global.cases%>
+                                                        <div style="font-weight:lighter;font-size:20px">+
+                                                            <%=global.todayCases%>
+                                                        </div>
+                                                </td>
+                                                <td class="text-warning" style="font-weight:bold;font-size:30px">
+                                                    <%=global.active%>
+                                                </td>
+                                                <td style="font-weight:bold;color:rgb(44, 230, 44);font-size:30px">
+                                                    <%=global.recovered%>
+                                                        <div style="font-weight:lighter;font-size:20px">+
+                                                            <%=global.todayRecovered%>
+                                                        </div>
+                                                </td>
+                                                <td class="text-danger" style="font-weight:bold;font-size:30px">
+                                                    <%=global.deaths%>
+                                                        <div style="font-weight:lighter;font-size:20px">+
+                                                            <%=global.todayDeaths%>
+                                                        </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <a class="btn btn-primary d-flex justify-content-center" href="/countryWise">View All
+                                    Country</a>
+                                <br>
+                                <h3>India</h3>
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                            <th>Total Cases</th>
+                                            <th>Total Active</th>
+                                            <th>Total Recovered</th>
+                                            <th>Total Deaths</th>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="text-primary" style="font-weight:bold;font-size:30px">
+                                                    <%=country.cases%>
+                                                        <div style="font-weight:lighter;font-size:20px">+
+                                                            <%=country.todayCases%>
+                                                        </div>
+                                                </td>
+                                                <td class="text-warning" style="font-weight:bold;font-size:30px">
+                                                    <%=country.active%>
+                                                </td>
+                                                <td style="font-weight:bold;color:rgb(44, 230, 44);font-size:30px">
+                                                    <%=country.recovered%>
+                                                        <div style="font-weight:lighter;font-size:20px">+
+                                                            <%=country.todayRecovered%>
+                                                        </div>
+                                                </td>
+                                                <td class="text-danger" style="font-weight:bold;font-size:30px">
+                                                    <%=country.deaths%>
+                                                        <div style="font-weight:lighter;font-size:20px">+
+                                                            <%=country.todayDeaths%>
+                                                        </div>
+                                                </td>
+
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <a class="btn btn-primary d-flex justify-content-center change" id="hide" type="button"
+                                    onclick="func()">View / hide all States of INDIA</a>
+                                <tr>Updated: <%=new Date(global.updated)%>
                                 </tr>
-                            </tbody>
-                        </table>
-                        </div>
-        <a class="btn btn-primary d-flex justify-content-center change" id="hide" type="button" onclick="func()">View / hide all States of INDIA</a>
-        <tr>Updated: <%=new Date(global.updated)%></tr>
-        </div>
-              <!-- <div class="col-lg-3">
+                            </div>
+                            <!-- <div class="col-lg-3">
                     <div class="list-group mt-4">
                         <a href="#" class="list-group-item list-group-item-action list-group-item-primary">A simple info list group item</a>
                         <a href="#" class="list-group-item list-group-item-action list-group-item-secondary"><span class="glyphicon glyphicon-tint"></span>A simple info list group item</a>
@@ -164,59 +204,76 @@
                          <a href="#" class="list-group-item list-group-item-action list-group-item-light">A simple light list group item</a>
                          <a href="#" class="list-group-item list-group-item-action list-group-item-dark">A simple dark list group item</a>
                 </div>-->
-        </div>
-        </div>
-        </div>
-        </div>
-    
-        <br>
-        <br>
-        <br>
-        <hr>
-        <div class="container mystyle" id="magic">
-            <h1 class="text-center">State Wise Covid Update of India</h1>
-            <br>
-            <div class="d-flex justify-content-end">
-            <input type="search" id="filter2" style="width:250px" placeholder="Search your state" onkeyup="func2()">
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="table-responsive">
-            <table class="table table-striped table-bordered table-hover">
-                <thead>
-                    <tr>Updated: <%=new Date(r.updated)%></tr>
-                        <tr>
-                            <th>No</th>
-                        <th>State</th>
-                        <th>Total Cases</th>
-                        <th>Today's Cases</th>
-                        <th>Total Active </th>
-                        <th>Total Recovered</th>
-                        <th>Today Recovered</th>
-                        <th>Total Death</th>
-                        <th>Today's Deaths</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <%var c=1%>
-                        <%for(let i of r.states){%>
-                            <tr class="stateSearch">
-                                <th><%=c++%></th>
-                                <td style="font-weight:bold"><%=i.state%></td>
-                                <td><%=i.cases%></td>
-                                <td class="text-primary"style="font-weight:bold">+<%=i.todayCases%></td>
-                                <td class="text-warning"style="font-weight:bold"><%=i.active%></td>
-                                <td><%=i.recovered%></td>
-                                <td style="font-weight:bold;color:rgb(44, 230, 44)">+<%=i.todayRecovered%></td>
-                                <td><%=i.deaths%></td>
-                                <td class="text-danger"style="font-weight:bold">+<%=i.todayDeaths%></td>
-                                
-                                <%}%>
-                                
+
+            <br>
+            <br>
+            <br>
+            <hr>
+            <div class="container mystyle" id="magic">
+                <h1 class="text-center" style="font-family: cursive;">State Wise Covid Update of India</h1>
+                <br>
+                <div class="d-flex justify-content-end">
+                    <input type="search" id="filter2" style="width:250px" placeholder="Search your state"
+                        onkeyup="func2()">
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-hover">
+                        <thead>
+                            <tr>Updated: <%=new Date(r.updated)%>
                             </tr>
+                            <tr>
+                                <th>No</th>
+                                <th>State</th>
+                                <th>Total Cases</th>
+                                <th>Today's Cases</th>
+                                <th>Total Active </th>
+                                <th>Total Recovered</th>
+                                <th>Today Recovered</th>
+                                <th>Total Death</th>
+                                <th>Today's Deaths</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <%var c=1%>
+                                <%for(let i of r.states){%>
+                                    <tr class="stateSearch">
+                                        <th>
+                                            <%=c++%>
+                                        </th>
+                                        <td style="font-weight:bold">
+                                            <%=i.state%>
+                                        </td>
+                                        <td>
+                                            <%=i.cases%>
+                                        </td>
+                                        <td class="text-primary" style="font-weight:bold">+<%=i.todayCases%>
+                                        </td>
+                                        <td class="text-warning" style="font-weight:bold">
+                                            <%=i.active%>
+                                        </td>
+                                        <td>
+                                            <%=i.recovered%>
+                                        </td>
+                                        <td style="font-weight:bold;color:rgb(44, 230, 44)">+<%=i.todayRecovered%>
+                                        </td>
+                                        <td>
+                                            <%=i.deaths%>
+                                        </td>
+                                        <td class="text-danger" style="font-weight:bold">+<%=i.todayDeaths%>
+                                        </td>
+
+                                        <%}%>
+
+                                    </tr>
                         </tbody>
-                        
+
                     </table>
                 </div>
-                
+
                 <div id="notFound" hidden>
                     <br>
                     <h1 style="text-align: center;">No Results Found</h1>
@@ -224,631 +281,608 @@
                 <br><br><br><br><br><br>
             </div>
             <%-include('./partials/footer')%>
-            <script>
-                let myChart1,myChart2,mychart3,myChart4,myChart5,myChart7;
-                func15();
-                func6();
-                funcAll();
-                selectCountry();
-                compareCountry();
-                async function func3()
-                {
-                    myChart1=new Chart(),myChart2=new Chart(),mychart3=new Chart(),myChart4=new Chart(),myChart5=new Chart();
-                    myChart7=new Chart();
-                    /* mychart2.destroy();
-                    mychart3.destroy();
-                    mychart4.destroy();
-                    mychart5.destroy();*/
-                    let canvas1=document.getElementById('myChart');
-                    let canvas2=document.getElementById('myChart6');
-                    let canvas3=document.getElementById('myChart15');
-                    let canvas4=document.getElementById('myChartAll');
-                    let canvas5=document.getElementById('myChartCountry');
-                    canvas1.hidden=false;
-                    canvas2.hidden=true;
-                    canvas3.hidden=true;
-                    canvas4.hidden=true;
-                    canvas5.hidden=true;
-                    canvas1.height="400px";
-                    canvas1.width="600px";
-                    document.getElementById('header').innerHTML=`Number of Cases in India`;
-                    const response= await fetch("https://api.covid19india.org/data.json");
-                    const resp=await response.json();
-                    //response.then(pp=>{
-                        const value=resp.cases_time_series;
-                        let a=[];
-                        let b=[];
-                        let c=[];
-                                        let k=value.length;
-                                        let j=value.length;
-                                        let l=value.length;
-                                        //console.log(value);
-                                        for(let i=value.length-1;i>=0;i--)
-                                        {
-                                            a[k--]=value[i].dailyconfirmed;
-                                            b[j--]=value[i].date;
-                                            c[l--]=value[i].dailydeceased;
-                                        }
-                                        //console.log(a);
-                                        //console.log(b);
-                                        
-                                        var ctx = document.getElementById('myChart').getContext('2d');
-                                        myChart1 = new Chart(ctx, {
-                                            type: 'line',
-                                            data: {
-                                                labels: b,
-                                                datasets: [{
-                                                    label: 'Number of Cases in India',
-                                                    data: a,
-                                                    backgroundColor: [
-                                                        'rgba(76, 62, 237, 0.7)'
-                                                        
-                                            ],
-                                            borderColor: [
-                                                'rgba(25, 12, 171, 0.6)'
-                                            ],
-                                            borderWidth: 2,
-                                            fill:true
-                                        }
-                                ],
-                                        
-                                    },
-                                    
-                                    options: {
-                                        scales: {
-                                            y: {
-                                                
-                                                beginAtZero: true
-                                            }
-                                        }
-                                    }
-                                })
-                            };
-                            async function func15()
-                            {
-                                //mychart1.destroy();
-                               /* mychart3.destroy();
-                                mychart2.destroy();*/
-                                // mychart4.destroy();
-                                //mychart5.destroy();
-                                let canvas1=document.getElementById('myChart');
-                                let canvas2=document.getElementById('myChart6');
-                                let canvas3=document.getElementById('myChart15');
-                                let canvas4=document.getElementById('myChartAll');
-                                let canvas5=document.getElementById('myChartCountry');
-                                canvas1.hidden=true;
-                                        canvas2.hidden=true;
-                                        canvas3.hidden=false;
-                                        canvas4.hidden=true;
-                                        canvas5.hidden=true;
-                                        canvas3.height="400px";
-                                        canvas3.width="600px";
-                                        document.getElementById('header').innerHTML=`Number of Cases in India`;
-                                        const response= await fetch("https://api.covid19india.org/data.json");
-                                        const resp=await response.json();
-                                        //response.then(pp=>{
-                                            const value=resp.cases_time_series;
-                                            let a=[];
-                                            let b=[];
-                                            let c=[];
-                                            let k=15;
-                                            let j=15;
-                                            let l=15;
-                                            //console.log(value);
-                                            for(let i=value.length-1;i>=value.length-15;i--)
-                                            {
-                                                a[k--]=value[i].dailyconfirmed;
-                                                b[j--]=value[i].date;
-                                                c[l--]=value[i].dailydeceased;
-                                            }
-                                            // console.log(a);
-                                            //console.log(b);
-                                            
-                                            var ctx = document.getElementById('myChart15').getContext('2d');
-                                 myChart2 = new Chart(ctx, {
-                                     type: 'line',
-                                     data: {
-                                         labels: b,
-                                        datasets: [{
-                                            label: 'Number of Cases in India',
-                                            data: a,
-                                            backgroundColor: [
-                                                'rgba(76, 62, 237, 0.5)'
-                                            ],
-                                            borderColor: [
-                                            'rgba(25, 12, 171, 0.8)'
-                                            ],
-                                            borderWidth: 4,
-                                            fill:true
-                                        }],
-                                        
-                                    },
-                                     
-                                    options: {
-                                        scales: {
-                                            y: {
-                                                beginAtZero: true
-                                            }
-                                        }
-                                    }
-                                })
-                                
-                            };
-                            async function func6()
-                            {
-                                //mychart2.destroy();
-                                //mychart1.destroy();
-                                // mychart4.destroy();
-                               /* myChart3.destroy();
-                                mychart5.destroy();*/
-                                let canvas1=document.getElementById('myChart');
-                                let canvas2=document.getElementById('myChart6');
-                                let canvas3=document.getElementById('myChart15');
-                                let canvas4=document.getElementById('myChartAll');
-                                let canvas5=document.getElementById('myChartCountry');
-                                canvas1.hidden=true;
-                                canvas2.hidden=false;
-                                canvas3.hidden=true;
-                                canvas4.hidden=true;
-                                canvas5.hidden=true;
-                                canvas2.height="400px";
-                                canvas2.width="600px";
-                                document.getElementById('header').innerHTML=`Number of Cases in India`;
-                                const response= await fetch("https://api.covid19india.org/data.json");
-                                const resp=await response.json();
-                                //response.then(pp=>{
-                                    const value=resp.cases_time_series;
-                                    let a=[];
-                                    let b=[];
-                                    let c=[];
-                                    let k=180;
-                                    let j=180;
-                                    let l=180;
-                                    // console.log(value);
-                                    for(let i=value.length-1;i>=value.length-180;i--)
-                                    {
-                                        a[k--]=value[i].dailyconfirmed;
-                                        b[j--]=value[i].date;
-                                        c[l--]=value[i].dailydeceased;
-                                    }
-                                    // console.log(a);
-                                    // console.log(b);
-                                    
-                                    var ctx = document.getElementById('myChart6').getContext('2d');
-                                    myChart3 = new Chart(ctx, {
-                                        type: 'line',
-                                    data: {
-                                        labels: b,
-                                        datasets: [{
-                                            label: 'Number of Cases in India',
-                                            data: a,
-                                            backgroundColor:[
-                                                'rgba(76, 62, 237, 0.5)'
-                                            ],
-                                            borderColor: [
-                                            'rgba(25, 12, 171, 0.8)'
-                                            ],
-                                            borderWidth: 3,
-                                            fill:true
-                                        }],
-                                      
-                                    },
-                                    
-                                    options: {
-                                        scales: {
-                                            y: {
-                                                beginAtZero: true
-                                            }
-                                        }
-                                    }
-                                })
-                                
-                            };
-                            async function funcAll()
-                            {
-                                /* mychart2.destroy();
-                                mychart3.destroy();
-                                mychart1.destroy();
-                                /*mychart5.destroy();*/
-                                
-                                let canvas1=document.getElementById('myChart');
-                                let canvas2=document.getElementById('myChart6');
-                                let canvas3=document.getElementById('myChart15');
-                                let canvas4=document.getElementById('myChartAll');
-                                        let canvas5=document.getElementById('myChartCountry');
-                                        canvas1.hidden=true;
-                                        canvas2.hidden=true;
-                                        canvas3.hidden=true;
-                                        canvas4.hidden=false;
-                                        canvas5.hidden=true;
-                                        canvas4.height="400px";
-                                        canvas4.width="600px";
-                                        document.getElementById('header').innerHTML=`Number of Cases in India`;
-                                        const response= await fetch("https://api.covid19india.org/data.json");
-                                        const resp=await response.json();
-                                        //response.then(pp=>{
-                                            const value=resp.cases_time_series;
-                                            let a=[];
-                                            let b=[];
-                                            let c=[];
-                                            let k=value.length;
-                                            let j=value.length;
-                                            let l=value.length;
-                                            //console.log(value);
-                                            for(let i=value.length-1;i>=0;i--)
-                                    {
-                                        a[k--]=value[i].dailyconfirmed;
-                                        b[j--]=value[i].date;
-                                        c[l--]=value[i].dailydeceased;
-                                    }
-                                    //console.log(a);
-                                    // console.log(b);
-                                    
-                                    var ctx = document.getElementById('myChartAll').getContext('2d');
-                                    myChart4 = new Chart(ctx, {
-                                        type: 'line',
-                                        data: {
-                                            labels: b,
-                                            datasets: [{
-                                                label: 'Number of Cases in India',
-                                                data: a,
-                                                backgroundColor: [
-                                                    'rgba(76, 62, 237, 0.5)'
-                                                ],
-                                            borderColor: [
-                                            'rgba(25, 12, 171, 0.8)'
-                                            ],
-                                            borderWidth: 3,
-                                            fill:true
-                                        }],
-                                      
-                                    },
-                                     
-                                    options: {
-                                        scales: {
-                                            y: {
-                                                beginAtZero: true
-                                            }
-                                        }
-                                    }
-                                })
-                            
-                            };
-                            async function check(country)
-                               {
-                                   let response;
-                             
-                                       response= await fetch(`https://api.covid19api.com/total/dayone/country/${country}`);
-                                       let resp=await response.json();
-                                       if(response.status==404 || resp.length==0)
-                                       {
-                                           response= await fetch(`https://api.covid19api.com/total/dayone/country/south-africa`);
-                                           resp=await response.json();
-
-                                       }
-                                       return resp;
-                                       //throw new Error("rashid");
-                                       //return await response.json();
-                                  
-                                     
-                                      // console.log(response);
-                                       //return await response.json();
-                                   /*finally{
-                                       return await response.json();
-                                   }*/
-
-                                }
-                           async function selectCountry(){
-                                       myChart2.destroy();
-                                        myChart3.destroy();
-                                        myChart4.destroy();
-                                        myChart1.destroy();
-                                       myChart5.destroy();
-                                        const name=document.getElementById('selectCountry').value
-                                if(name=="India")
-                                {
-                               const buttons=document.getElementsByTagName('button');
-                               for(let i=0;i<buttons.length;i++)
-                               buttons[i].hidden=false;
-                                }
-                                else
-                                {
-                                    const buttons=document.getElementsByTagName('button');
-                                     for(let i=0;i<buttons.length;i++)
-                                    buttons[i].hidden=true;  
-                                }
-                               const country=name.toLowerCase();
-                               document.getElementById('header').innerHTML=`Number of Cases in ${name}`;
-                               console.log(name); 
-                               let canvas1=document.getElementById('myChart');
-                               let canvas2=document.getElementById('myChart6');
-                               let canvas3=document.getElementById('myChart15');
-                               let canvas4=document.getElementById('myChartAll');
-                               let canvas5=document.getElementById('myChartCountry');
-                               canvas1.hidden=true;
-                               canvas2.hidden=true;
-                               canvas3.hidden=true;
-                               canvas4.hidden=true;
-                               canvas5.hidden=false;
-                               //mychart1.destroy();
-                              
-                               
-                              
-                                const resp=await check(country);
-                                console.log(resp);
-                                   const value=resp;
-                                   let a=[];
-                                   let b=[];
-                                   let c=[];
-                                   let k=value.length;
-                                   let j=value.length;
-                                   let l=value.length;
-                                   //console.log(value);
-                                    for(let i=value.length-2;i>0;i--)
-                                    {
-                                        let cases=value[i].Confirmed-value[i-1].Confirmed;
-                                        if(cases>0)
-                                        {
-                                            a[k--]=cases;
-                                            b[j--]=(new Date(value[i].Date.substring(0,10)).toUTCString()).substring(4,16);
-                                        }
-                                    }
-                                   // console.log(a);
-                                    //console.log(b);
-                                    var ctx = document.getElementById('myChartCountry').getContext('2d');
-                                    canvas5.height="400px";
-                                    canvas5.width="600px";
-                                     myChart5 = new Chart(ctx, {
-                                        type: 'line',
-                                        data: {
-                                            labels: b,
-                                            datasets: [{
-                                                label: `Number of Cases in ${name}`,
-                                                data: a,
-                                                backgroundColor: [
-                                                    'rgba(235, 155, 212, 0.5)'
-                                                    //'rgba(Math.floor(Math.random()*256),Math.floor(Math.random()*256),Math.floor(Math.random()*256),0.5)'
-                                                    
-                                                ],
-                                                borderColor: [
-                                                    'rgba(207, 6, 150, 0.8)'
-                                            ],
-                                            borderWidth: 2,
-                                            fill:true
-                                        }],
-                                        
-                                    },
-                                    
-                                    options: {
-                                        responsive: true,
-                                        maintainAspectRatio: false,
-                                        scales: {
-                                            y: {
-                                                beginAtZero: true
-                                            }
-                                        }
-                                    }
-                                   // myChart5.update();
-                                })
-                                
-                            };
-                            async function compareCountry(){
-                                       /*myChart2.destroy();
-                                        myChart3.destroy();
-                                        myChart4.destroy();
-                                        myChart1.destroy();
-                                       myChart5.destroy();*/
-                                       myChart7.destroy();
-                                        const name=document.getElementById('selectCountry2').value
-                               const country=name.toLowerCase();
-                               document.getElementById('header').innerHTML=`Number of Cases in ${name}`;
-                               /*console.log(name); 
-                               let canvas1=document.getElementById('myChart');
-                               let canvas2=document.getElementById('myChart6');
-                               let canvas3=document.getElementById('myChart15');
-                               let canvas4=document.getElementById('myChartAll');
-                               canvas1.hidden=true;
-                               canvas2.hidden=true;
-                               canvas3.hidden=true;
-                               canvas4.hidden=true;
-                               canvas5.hidden=false;
-                               //mychart1.destroy();*/
-                               //let canvas6=document.getElementById('myChart6');
-                              
-                               
-                              
-                                const resp=await check(country);
-                                console.log(resp);
-                                   const value=resp;
-                                   let a=[];
-                                   let b=[];
-                                   let c=[];
-                                   let k=value.length;
-                                   let j=value.length;
-                                   let l=value.length;
-                                   //console.log(value);
-                                    for(let i=value.length-2;i>0;i--)
-                                    {
-                                        let cases=value[i].Confirmed-value[i-1].Confirmed;
-                                        if(cases>0)
-                                        {
-                                            a[k--]=cases;
-                                            b[j--]=(new Date(value[i].Date.substring(0,10)).toUTCString()).substring(4,16);
-                                        }
-                                    }
-                                   // console.log(a);
-                                    //console.log(b);
-                                    var ctx = document.getElementById('myChart7').getContext('2d');
-                                    //canvas6.height="400px";
-                                    //canvas6.width="600px";
-                                     myChart7 = new Chart(ctx, {
-                                        type: 'line',
-                                        data: {
-                                            labels: b,
-                                            datasets: [{
-                                                label: `Number of Cases in ${name}`,
-                                                data: a,
-                                                backgroundColor: [
-                                                    'rgba(237, 199, 173, 0.5)'
-                                                    //'rgba(Math.floor(Math.random()*256),Math.floor(Math.random()*256),Math.floor(Math.random()*256),0.5)'
-                                                    
-                                                ],
-                                                borderColor: [
-                                                    'rgba(201, 97, 26, 0.8)'
-                                            ],
-                                            borderWidth: 2,
-                                            fill:true
-                                        }],
-                                        
-                                    },
-                                    
-                                    options: {
-                                        responsive: true,
-                                        maintainAspectRatio: false,
-                                        scales: {
-                                            y: {
-                                                beginAtZero: true
-                                            }
-                                        }
-                                    }
-                                   // myChart5.update();
-                                })
-                                
-                            };
-                            </script>
                 <script>
-                    /* window.onload = function () {
-                        
-                        async function func3()
-                        {
-                                    const response= await fetch("https://api.covid19india.org/data.json");
-                                    const resp=await response.json();
-                                        let a=[];
-                                    console.log(resp.cases_time_series);
-                                    const value=resp.cases_time_series;
-                                    for(let i=value.length-1;i>=388;i--)
-                                    {
-                                        a.push({
-                                            //x:value[i].date,
-                                            //y:value[i].dailyconfirmed
-                                            x:new Date(value[i].dateydm),
-                                            y:value[i].dailyconfirmed
-                                    });
+                    /*let myChart1,myChart2,mychart3,myChart4,myChart5,myChart7;
+                    func15();
+                    func6();
+                    funcAll();
+                    //selectCountry();
+                    compareCountry();*/
+                    async function func3() {
+                        // myChart1=new Chart(),myChart2=new Chart(),mychart3=new Chart(),myChart4=new Chart(),myChart5=new Chart();
+                        myChart7 = new Chart();
+                        /* mychart2.destroy();
+                        mychart3.destroy();
+                        mychart4.destroy();
+                        mychart5.destroy();*/
+                        let canvas1 = document.getElementById('myChart');
+                        let canvas2 = document.getElementById('myChart6');
+                        let canvas3 = document.getElementById('myChart15');
+                        let canvas4 = document.getElementById('myChartAll');
+                        //let canvas5=document.getElementById('myChartCountry');
+                        canvas1.hidden = false;
+                        canvas2.hidden = true;
+                        canvas3.hidden = true;
+                        canvas4.hidden = true;
+                        //canvas5.hidden=true;
+                        //canvas1.height="400px";
+                        //canvas1.width="600px";
+                        document.getElementById('header').innerHTML = `Number of Cases in India`;
+                        const response = await fetch("https://api.covid19india.org/data.json");
+                        const resp = await response.json();
+                        //response.then(pp=>{
+                        const value = resp.cases_time_series;
+                        let a = [];
+                        let b = [];
+                        let c = [];
+                        let k = value.length;
+                        let j = value.length;
+                        let l = value.length;
+                        //console.log(value);
+                        for (let i = value.length - 1; i >= 0; i--) {
+                            a[k--] = value[i].dailyconfirmed;
+                            b[j--] = value[i].date;
+                            c[l--] = value[i].dailydeceased;
+                        }
+                        //console.log(a);
+                        //console.log(b);
+
+                        var ctx = document.getElementById('myChart').getContext('2d');
+                        myChart1 = new Chart(ctx, {
+                            type: 'line',
+                            data: {
+                                labels: b,
+                                datasets: [{
+                                    label: 'Number of Cases in India',
+                                    data: a,
+                                    backgroundColor: [
+                                        'rgba(76, 62, 237, 0.7)'
+
+                                    ],
+                                    borderColor: [
+                                        'rgba(25, 12, 171, 0.6)'
+                                    ],
+                                    borderWidth: 2,
+                                    fill: true
                                 }
+                                ],
 
-                                var chart = new CanvasJS.Chart("chartContainer", {
-                                    animationEnabled: true,
-                                    theme: "light2",
-                                    title:{
-                                        text: "Covid Cases"
-                                    },
-                                    axisX:{
-                                        valueFormatString: "DD MMM,YY",
-                                        crosshair: {
-                                            enabled: true,
-                                            snapToDataPoint: true
-                                        }
-                                    },
-                                    axisY: {
-                                        title: "Number of Cases",
-                                        includeZero: true,
-                                        crosshair: {
-                                            enabled: true
-                                        }
-                                    },
-                                    toolTip:{
-                                        shared:true
-                                    },  
-                                    legend:{
-                                        cursor:"pointer",
-                                        verticalAlign: "bottom",
-                                        horizontalAlign: "left",
-                                        dockInsidePlotArea: true,
-                                        itemclick: toogleDataSeries
-                                    },
-                                    data: [{
-                                        type: "line",
-                                        showInLegend: true,
-                                        name: "Total Cases  Per Day",
-                                        markerType: "square",
-                                        xValueFormatString: "DD MMM, YYYY",
-                                        color: "blue",
-                                        dataPoints: a
-                                    },
-                                    {
-                                        type: "line",
-                                        showInLegend: true,
-                                        name: "Total Deaths per Day",
-                                        //lineDashType: "dash",
-                                        color: "red",
-                                        dataPoints:a
-                                    }]
-                                });
-                                chart.render();
+                            },
 
-                                function toogleDataSeries(e){
-                                    if (typeof(e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
-                                        e.dataSeries.visible = false;
-                                    } else{
-                                        e.dataSeries.visible = true;
+                            options: {
+                                scales: {
+                                    y: {
+
+                                        beginAtZero: true
                                     }
-                                    chart.render();
                                 }
+                            }
+                        })
+                    };
+                    async function func15() {
+                        //mychart1.destroy();
+                        /* mychart3.destroy();
+                         mychart2.destroy();*/
+                        // mychart4.destroy();
+                        //mychart5.destroy();
+                        let canvas1 = document.getElementById('myChart');
+                        let canvas2 = document.getElementById('myChart6');
+                        let canvas3 = document.getElementById('myChart15');
+                        let canvas4 = document.getElementById('myChartAll');
+                        //let canvas5=document.getElementById('myChartCountry');
+                        canvas1.hidden = true;
+                        canvas2.hidden = true;
+                        canvas3.hidden = false;
+                        canvas4.hidden = true;
+                        //canvas5.hidden=true;
+                        //canvas3.height="400px";
+                        //canvas3.width="600px";
+                        document.getElementById('header').innerHTML = `Number of Cases in India`;
+                        const response = await fetch("https://api.covid19india.org/data.json");
+                        const resp = await response.json();
+                        //response.then(pp=>{
+                        const value = resp.cases_time_series;
+                        let a = [];
+                        let b = [];
+                        let c = [];
+                        let k = 15;
+                        let j = 15;
+                        let l = 15;
+                        //console.log(value);
+                        for (let i = value.length - 1; i >= value.length - 15; i--) {
+                            a[k--] = value[i].dailyconfirmed;
+                            b[j--] = value[i].date;
+                            c[l--] = value[i].dailydeceased;
+                        }
+                        // console.log(a);
+                        //console.log(b);
 
+                        var ctx = document.getElementById('myChart15').getContext('2d');
+                        myChart2 = new Chart(ctx, {
+                            type: 'line',
+                            data: {
+                                labels: b,
+                                datasets: [{
+                                    label: 'Number of Cases in India',
+                                    data: a,
+                                    backgroundColor: [
+                                        'rgba(76, 62, 237, 0.5)'
+                                    ],
+                                    borderColor: [
+                                        'rgba(25, 12, 171, 0.8)'
+                                    ],
+                                    borderWidth: 4,
+                                    fill: true
+                                }],
+
+                            },
+
+                            options: {
+                                scales: {
+                                    y: {
+                                        beginAtZero: true
+                                    }
                                 }
-                                func3();
-                            }*/
+                            }
+                        })
+
+                    };
+                    async function func6() {
+                        //mychart2.destroy();
+                        //mychart1.destroy();
+                        // mychart4.destroy();
+                        /* myChart3.destroy();
+                         mychart5.destroy();*/
+                        let canvas1 = document.getElementById('myChart');
+                        let canvas2 = document.getElementById('myChart6');
+                        let canvas3 = document.getElementById('myChart15');
+                        let canvas4 = document.getElementById('myChartAll');
+                        //let canvas5=document.getElementById('myChartCountry');
+                        canvas1.hidden = true;
+                        canvas2.hidden = false;
+                        canvas3.hidden = true;
+                        canvas4.hidden = true;
+                        //canvas5.hidden=true;
+                        //canvas2.height="400px";
+                        //canvas2.width="600px";
+                        document.getElementById('header').innerHTML = `Number of Cases in India`;
+                        const response = await fetch("https://api.covid19india.org/data.json");
+                        const resp = await response.json();
+                        //response.then(pp=>{
+                        const value = resp.cases_time_series;
+                        let a = [];
+                        let b = [];
+                        let c = [];
+                        let k = 180;
+                        let j = 180;
+                        let l = 180;
+                        // console.log(value);
+                        for (let i = value.length - 1; i >= value.length - 180; i--) {
+                            a[k--] = value[i].dailyconfirmed;
+                            b[j--] = value[i].date;
+                            c[l--] = value[i].dailydeceased;
+                        }
+                        // console.log(a);
+                        // console.log(b);
+
+                        var ctx = document.getElementById('myChart6').getContext('2d');
+                        myChart3 = new Chart(ctx, {
+                            type: 'line',
+                            data: {
+                                labels: b,
+                                datasets: [{
+                                    label: 'Number of Cases in India',
+                                    data: a,
+                                    backgroundColor: [
+                                        'rgba(76, 62, 237, 0.5)'
+                                    ],
+                                    borderColor: [
+                                        'rgba(25, 12, 171, 0.8)'
+                                    ],
+                                    borderWidth: 3,
+                                    fill: true
+                                }],
+
+                            },
+
+                            options: {
+                                scales: {
+                                    y: {
+                                        beginAtZero: true
+                                    }
+                                }
+                            }
+                        })
+
+                    };
+                    async function funcAll() {
+                        /* mychart2.destroy();
+                        mychart3.destroy();
+                        mychart1.destroy();
+                        /*mychart5.destroy();*/
+
+                        let canvas1 = document.getElementById('myChart');
+                        let canvas2 = document.getElementById('myChart6');
+                        let canvas3 = document.getElementById('myChart15');
+                        let canvas4 = document.getElementById('myChartAll');
+                        //let canvas5=document.getElementById('myChartCountry');
+                        canvas1.hidden = true;
+                        canvas2.hidden = true;
+                        canvas3.hidden = true;
+                        canvas4.hidden = false;
+                        //canvas5.hidden=true;
+                        //canvas4.height="400px";
+                        //canvas4.width="600px";
+                        document.getElementById('header').innerHTML = `Number of Cases in India`;
+                        const response = await fetch("https://api.covid19india.org/data.json");
+                        const resp = await response.json();
+                        //response.then(pp=>{
+                        const value = resp.cases_time_series;
+                        let a = [];
+                        let b = [];
+                        let c = [];
+                        let k = value.length;
+                        let j = value.length;
+                        let l = value.length;
+                        //console.log(value);
+                        for (let i = value.length - 1; i >= 0; i--) {
+                            a[k--] = value[i].dailyconfirmed;
+                            b[j--] = value[i].date;
+                            c[l--] = value[i].dailydeceased;
+                        }
+                        //console.log(a);
+                        // console.log(b);
+
+                        var ctx = document.getElementById('myChartAll').getContext('2d');
+                        myChart4 = new Chart(ctx, {
+                            type: 'line',
+                            data: {
+                                labels: b,
+                                datasets: [{
+                                    label: 'Number of Cases in India',
+                                    data: a,
+                                    backgroundColor: [
+                                        'rgba(76, 62, 237, 0.5)'
+                                    ],
+                                    borderColor: [
+                                        'rgba(25, 12, 171, 0.8)'
+                                    ],
+                                    borderWidth: 3,
+                                    fill: true
+                                }],
+
+                            },
+
+                            options: {
+                                scales: {
+                                    y: {
+                                        beginAtZero: true
+                                    }
+                                }
+                            }
+                        })
+
+                    };
+                    async function check(country) {
+                        let response;
+
+                        response = await fetch(`https://api.covid19api.com/total/dayone/country/${country}`);
+                        let resp = await response.json();
+                        if (response.status == 404 || resp.length == 0) {
+                            response = await fetch(`https://api.covid19api.com/total/dayone/country/south-africa`);
+                            resp = await response.json();
+
+                        }
+                        return resp;
+                        //throw new Error("rashid");
+                        //return await response.json();
+
+
+                        // console.log(response);
+                        //return await response.json();
+                        /*finally{
+                            return await response.json();
+                        }*/
+
+                    };
+                    /*async function selectCountry(){
+                                myChart2.destroy();
+                                 myChart3.destroy();
+                                 myChart4.destroy();
+                                 myChart1.destroy();
+                                myChart5.destroy();
+                                 const name=document.getElementById('selectCountry').value
+                         if(name=="India")
+                         {
+                        const buttons=document.getElementsByTagName('button');
+                        for(let i=0;i<buttons.length;i++)
+                        buttons[i].hidden=false;
+                         }
+                         else
+                         {
+                             const buttons=document.getElementsByTagName('button');
+                              for(let i=0;i<buttons.length;i++)
+                             buttons[i].hidden=true;  
+                         }
+                        const country=name.toLowerCase();
+                        document.getElementById('header').innerHTML=`Number of Cases in ${name}`;
+                        console.log(name); 
+                        let canvas1=document.getElementById('myChart');
+                        let canvas2=document.getElementById('myChart6');
+                        let canvas3=document.getElementById('myChart15');
+                        let canvas4=document.getElementById('myChartAll');
+                        let canvas5=document.getElementById('myChartCountry');
+                        canvas1.hidden=true;
+                        canvas2.hidden=true;
+                        canvas3.hidden=true;
+                        canvas4.hidden=true;
+                        canvas5.hidden=false;
+                        //mychart1.destroy();
+                       
+                        
+                       
+                         const resp=await check(country);
+                         console.log(resp);
+                            const value=resp;
+                            let a=[];
+                            let b=[];
+                            let c=[];
+                            let k=value.length;
+                            let j=value.length;
+                            let l=value.length;
+                            //console.log(value);
+                             for(let i=value.length-2;i>0;i--)
+                             {
+                                 let cases=value[i].Confirmed-value[i-1].Confirmed;
+                                 if(cases>0)
+                                 {
+                                     a[k--]=cases;
+                                     b[j--]=(new Date(value[i].Date.substring(0,10)).toUTCString()).substring(4,16);
+                                 }
+                             }
+                            // console.log(a);
+                             //console.log(b);
+                             var ctx = document.getElementById('myChartCountry').getContext('2d');
+                             canvas5.height="400px";
+                             canvas5.width="600px";
+                              myChart5 = new Chart(ctx, {
+                                 type: 'line',
+                                 data: {
+                                     labels: b,
+                                     datasets: [{
+                                         label: `Number of Cases in ${name}`,
+                                         data: a,
+                                         backgroundColor: [
+                                             'rgba(235, 155, 212, 0.5)'
+                                             //'rgba(Math.floor(Math.random()*256),Math.floor(Math.random()*256),Math.floor(Math.random()*256),0.5)'
+                                             
+                                         ],
+                                         borderColor: [
+                                             'rgba(207, 6, 150, 0.8)'
+                                     ],
+                                     borderWidth: 2,
+                                     fill:true
+                                 }],
+                                 
+                             },
+                             
+                             options: {
+                                 responsive: true,
+                                 maintainAspectRatio: false,
+                                 scales: {
+                                     y: {
+                                         beginAtZero: true
+                                     }
+                                 }
+                             }
+                            // myChart5.update();
+                         })
+                         
+                     };*/
+                     funcDeath();
+                    async function funcDeath() {
+                        document.getElementById("deathButton").hidden=true;
+                        let canvas7 = document.getElementById('myChart7');
+                        let canvas8 = document.getElementById('myChart8');
+                        canvas7.hidden = true;
+                        canvas8.hidden = false;
+                        //canvas3.height="400px";
+                        //canvas3.width="600px";
+                        document.getElementById('header2').innerHTML = `Number of Deaths in India`;
+                        const response = await fetch("https://api.covid19india.org/data.json");
+                        const resp = await response.json();
+                        //response.then(pp=>{
+                        const value = resp.cases_time_series;
+                        let a = [];
+                        let b = [];
+                        let c = [];
+                        let k = value.length;
+                        let j = value.length;
+                        let l = value.length;
+                        //console.log(value);
+                        for (let i = value.length-1; i >=0; i--) {
+                            a[k--] = value[i].dailyconfirmed;
+                            b[j--] = value[i].date;
+                            c[l--] = value[i].dailydeceased;
+                        }
+                        // console.log(a);
+                        //console.log(b);
+
+                        var ctx = document.getElementById('myChart8').getContext('2d');
+                        myChart8 = new Chart(ctx, {
+                            type: 'line',
+                            data: {
+                                labels: b,
+                                datasets: [{
+                                    label: 'Number of Deaths in India',
+                                    data: c,
+                                    backgroundColor: [
+                                        'rgba(166, 76, 79, 0.7)'
+                                    ],
+                                    borderColor: [
+                                        'rgba(245, 20, 27)'
+                                    ],
+                                    borderWidth: 4,
+                                    fill: true
+                                }],
+
+                            },
+
+                            options: {
+                                scales: {
+                                    y: {
+                                        beginAtZero: true
+                                    }
+                                }
+                            }
+                        })
+
+                    };
+                    async function compareCountry() {
+                        /*myChart2.destroy();
+                         myChart3.destroy();
+                         myChart4.destroy();
+                         myChart1.destroy();
+                        myChart5.destroy();*/
+                        myChart7.destroy();
+                        document.getElementById("deathButton").hidden=false;
+                        let canvas7 = document.getElementById('myChart7');
+                        let canvas8 = document.getElementById('myChart8');
+                        canvas7.hidden = false;
+                        canvas8.hidden = true;
+                        const name = document.getElementById('selectCountry2').value
+                        const country = name.toLowerCase();
+                        document.getElementById('header2').innerHTML = `Number of Cases in ${name}`;
+                        /*console.log(name); 
+                        let canvas1=document.getElementById('myChart');
+                        let canvas2=document.getElementById('myChart6');
+                        let canvas3=document.getElementById('myChart15');
+                        let canvas4=document.getElementById('myChartAll');
+                        canvas1.hidden=true;
+                        canvas2.hidden=true;
+                        canvas3.hidden=true;
+                        canvas4.hidden=true;
+                        canvas5.hidden=false;
+                        //mychart1.destroy();*/
+                        //let canvas6=document.getElementById('myChart6');
+
+
+
+                        const resp = await check(country);
+                        console.log(resp);
+                        const value = resp;
+                        let a = [];
+                        let b = [];
+                        let c = [];
+                        let k = value.length;
+                        let j = value.length;
+                        let l = value.length;
+                        //console.log(value);
+                        for (let i = value.length - 2; i > 0; i--) {
+                            let cases = value[i].Confirmed - value[i - 1].Confirmed;
+                            if (cases > 0) {
+                                a[k--] = cases;
+                                b[j--] = (new Date(value[i].Date.substring(0, 10)).toUTCString()).substring(4, 16);
+                            }
+                        }
+                        // console.log(a);
+                        //console.log(b);
+                        var ctx = document.getElementById('myChart7').getContext('2d');
+                        //canvas6.height="400px";
+                        //canvas6.width="600px";
+                        myChart7 = new Chart(ctx, {
+                            type: 'line',
+                            data: {
+                                labels: b,
+                                datasets: [{
+                                    label: `Number of Cases in ${name}`,
+                                    data: a,
+                                    backgroundColor: [
+                                        'rgba(237, 199, 173, 0.5)'
+                                        //'rgba(Math.floor(Math.random()*256),Math.floor(Math.random()*256),Math.floor(Math.random()*256),0.5)'
+
+                                    ],
+                                    borderColor: [
+                                        'rgba(201, 97, 26, 0.8)'
+                                    ],
+                                    borderWidth: 2,
+                                    fill: true
+                                }],
+
+                            },
+
+                            options: {
+                                responsive: true,
+                                maintainAspectRatio: false,
+                                scales: {
+                                    y: {
+                                        beginAtZero: true
+                                    }
+                                }
+                            }
+                            // myChart5.update();
+                        })
+
+                    };
                 </script>
-               <script>
-                   function func()
-                   {
-                       let a=document.getElementById('magic');
-                       a.classList.toggle("mystyle");
-                      // a.style.display="block";
-                      // b=document.getElementById('hide');
-                    
-                      // b.classList.toggle("change");
-                   }
-               </script>
-               <script>
-                   function func2()
-                   {
-                       let c=0;
-                       let notFound=document.getElementById('notFound');
-                       let filter2=document.getElementById('filter2').value.toUpperCase();
-                       let st=document.getElementsByClassName("stateSearch");
-                       for(let i=0;i<st.length;i++)
-                       {
-                           let ss=st[i].getElementsByTagName('td')[0];
-                           let sp=ss.innerHTML.toUpperCase();
-                           if(sp)
-                           {
-                               if(sp.indexOf(filter2)>-1)
-                               st[i].hidden=false;
-                               else
-                               {
-                                   c++;
-                               st[i].hidden=true;
-                               }
-                           }
-                       }
-                       if(c==st.length)
-                       notFound.hidden=false;
-                       else
-                       notFound.hidden=true;
-                   }
-               </script>
-               <script>
-                   function compareAndToggle()
-                   {
-                       const graph1=document.getElementById('graphsCompare1');
-                       const graph2=document.getElementById('graphsCompare2');
-                       graph2.hidden=false;
-                       graph1.classList.toggle("toggle");
-                   }
-               </script>
+                <script>
+                    function func() {
+                        let a = document.getElementById('magic');
+                        a.classList.toggle("mystyle");
+                        // a.style.display="block";
+                        // b=document.getElementById('hide');
+
+                        // b.classList.toggle("change");
+                    }
+                </script>
+                <script>
+                    function func2() {
+                        let c = 0;
+                        let notFound = document.getElementById('notFound');
+                        let filter2 = document.getElementById('filter2').value.toUpperCase();
+                        let st = document.getElementsByClassName("stateSearch");
+                        for (let i = 0; i < st.length; i++) {
+                            let ss = st[i].getElementsByTagName('td')[0];
+                            let sp = ss.innerHTML.toUpperCase();
+                            if (sp) {
+                                if (sp.indexOf(filter2) > -1)
+                                    st[i].hidden = false;
+                                else {
+                                    c++;
+                                    st[i].hidden = true;
+                                }
+                            }
+                        }
+                        if (c == st.length)
+                            notFound.hidden = false;
+                        else
+                            notFound.hidden = true;
+                    }
+                </script>
+                <script>
+                    function compareAndToggle() {
+                        const graph1 = document.getElementById('graphsCompare1');
+                        const graph2 = document.getElementById('graphsCompare2');
+                        graph2.classList.toggle("toggle");
+                        //graph1.classList.remove('col-lg-12');
+                        //graph2.classList.remove('col-lg-12');
+                        graph1.classList.replace("col-lg-12", 'col-lg-6');
+                        graph2.classList.replace('col-lg-12', 'col-lg-6');
+                        // graph1.classList.toggle("toggle");
+                    }
+                    function deathGraphVisible()
+                    {
+                        funcDeath();
+                        document.getElementById("mychart7").hidden=true;
+                        document.getElementById("mychart8").hidden=false;
+                        
+                    }
+                </script>
                 <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous"></script>
-       
-    </body>
+                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"
+                    integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8"
+                    crossorigin="anonymous"></script>
+
+</body>
+
 </html>
