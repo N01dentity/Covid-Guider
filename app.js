@@ -55,15 +55,6 @@ app.get("/countryWise/:country",async(req,res)=>{
     res.render("countryDetails",{states,yesterday,twoDaysAgo});
 });
 app.get("/vaccination",async(req,res)=>{
-    /*const response=await fetch("https://disease.sh/v3/covid-19/vaccine/coverage/countries?lastdays=30&fullData=true");
-    const resp=await response.json();
-    resp.then(r=>{
-        console.log(r);
-
-    })
-    resp.catch(e=>{
-        console.log("Error");
-    })*/
     res.render("vaccination");
 });
 app.get("/abcd",async(req,res)=>{
