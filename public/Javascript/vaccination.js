@@ -324,6 +324,8 @@ async function vaccineDetails() {
             if (response3[r].country == i.country) {
                 let td4 = document.createElement('td');
                 let percentage=((i.timeline[i.timeline.length-1].total)/response3[r].population)*100;
+                if(percentage>100)
+                percentage=100;
                 console.log(i.country,i.timeline[i.timeline.length-1].total,response3[r].population)
                 td4.innerHTML=Math.round(percentage)+"%";
                 tr.appendChild(td4);
