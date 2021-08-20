@@ -20,24 +20,31 @@ async function func3() {
     //canvas1.height="400px";
     //canvas1.width="600px";
     document.getElementById('header').innerHTML = `Number of Cases in India`;
-    const response = await fetch("https://api.covid19india.org/data.json");
+    const response = await fetch("https://api.covid19api.com/total/dayone/country/india");
     const resp = await response.json();
     //response.then(pp=>{
-    const value = resp.cases_time_series;
+    //const value = resp.cases_time_series;
+    const value = resp;
     let a = [];
     let b = [];
     let c = [];
     let k = value.length;
     let j = value.length;
     let l = value.length;
-    //console.log(value);
-    for (let i = value.length - 1; i >= 0; i--) {
+    /*for (let i = value.length - 1; i >= 0; i--) {
         a[k--] = value[i].dailyconfirmed;
         b[j--] = value[i].date;
         c[l--] = value[i].dailydeceased;
-    }
-    //console.log(a);
-    //console.log(b);
+    }*/
+    for(let i=value.length-2;i>0;i--)
+                {
+                    let cases=value[i].Confirmed-value[i-1].Confirmed;
+                    if(cases>0)
+                    {
+                        a[k--]=cases;
+                        b[j--]=(new Date(value[i].Date.substring(0,10)).toUTCString()).substring(4,16);
+                    }
+                }
 
     var ctx = document.getElementById('myChart').getContext('2d');
     myChart1 = new Chart(ctx, {
@@ -90,24 +97,29 @@ async function func15() {
     //canvas3.height="400px";
     //canvas3.width="600px";
     document.getElementById('header').innerHTML = `Number of Cases in India`;
-    const response = await fetch("https://api.covid19india.org/data.json");
+    const response = await fetch("https://api.covid19api.com/total/dayone/country/india");
     const resp = await response.json();
     //response.then(pp=>{
-    const value = resp.cases_time_series;
+    //const value = resp.cases_time_series;
+    const value = resp;
     let a = [];
     let b = [];
     let c = [];
     let k = 15;
     let j = 15;
     let l = 15;
-    //console.log(value);
     for (let i = value.length - 1; i >= value.length - 15; i--) {
-        a[k--] = value[i].dailyconfirmed;
+        /*a[k--] = value[i].dailyconfirmed;
         b[j--] = value[i].date;
-        c[l--] = value[i].dailydeceased;
+        c[l--] = value[i].dailydeceased;*/
+        let cases=value[i].Confirmed-value[i-1].Confirmed;
+                    if(cases>0)
+                    {
+                        a[k--]=cases;
+                        b[j--]=(new Date(value[i].Date.substring(0,10)).toUTCString()).substring(4,16);
+                    }
+
     }
-    // console.log(a);
-    //console.log(b);
 
     var ctx = document.getElementById('myChart15').getContext('2d');
     myChart2 = new Chart(ctx, {
@@ -158,24 +170,29 @@ async function func6() {
     //canvas2.height="400px";
     //canvas2.width="600px";
     document.getElementById('header').innerHTML = `Number of Cases in India`;
-    const response = await fetch("https://api.covid19india.org/data.json");
+    const response = await fetch("https://api.covid19api.com/total/dayone/country/india");
     const resp = await response.json();
     //response.then(pp=>{
-    const value = resp.cases_time_series;
+    //const value = resp.cases_time_series;
+    const value = resp;
     let a = [];
     let b = [];
     let c = [];
     let k = 180;
     let j = 180;
     let l = 180;
-    // console.log(value);
     for (let i = value.length - 1; i >= value.length - 180; i--) {
-        a[k--] = value[i].dailyconfirmed;
+        /*a[k--] = value[i].dailyconfirmed;
         b[j--] = value[i].date;
-        c[l--] = value[i].dailydeceased;
+        c[l--] = value[i].dailydeceased;*/
+        let cases=value[i].Confirmed-value[i-1].Confirmed;
+                    if(cases>0)
+                    {
+                        a[k--]=cases;
+                        b[j--]=(new Date(value[i].Date.substring(0,10)).toUTCString()).substring(4,16);
+                    }
     }
-    // console.log(a);
-    // console.log(b);
+    
 
     var ctx = document.getElementById('myChart6').getContext('2d');
     myChart3 = new Chart(ctx, {
@@ -226,24 +243,25 @@ async function funcAll() {
     //canvas4.height="400px";
     //canvas4.width="600px";
     document.getElementById('header').innerHTML = `Number of Cases in India`;
-    const response = await fetch("https://api.covid19india.org/data.json");
+    const response = await fetch("https://api.covid19api.com/total/dayone/country/india");
     const resp = await response.json();
     //response.then(pp=>{
-    const value = resp.cases_time_series;
+    //const value = resp.cases_time_series;
+    const value = resp;
     let a = [];
     let b = [];
     let c = [];
     let k = value.length;
     let j = value.length;
     let l = value.length;
-    //console.log(value);
-    for (let i = value.length - 1; i >= 0; i--) {
-        a[k--] = value[i].dailyconfirmed;
-        b[j--] = value[i].date;
-        c[l--] = value[i].dailydeceased;
+    for (let i = value.length - 2; i > 0; i--) {
+        let cases=value[i].Confirmed-value[i-1].Confirmed;
+                    if(cases>0)
+                    {
+                        a[k--]=cases;
+                        b[j--]=(new Date(value[i].Date.substring(0,10)).toUTCString()).substring(4,16);
+                    }
     }
-    //console.log(a);
-    // console.log(b);
 
     var ctx = document.getElementById('myChartAll').getContext('2d');
     myChart4 = new Chart(ctx, {
@@ -308,24 +326,26 @@ async function funcDeath() {
     //canvas3.height="400px";
     //canvas3.width="600px";
     document.getElementById('header2').innerHTML = `Number of Deaths in India`;
-    const response = await fetch("https://api.covid19india.org/data.json");
+    const response = await fetch("https://api.covid19api.com/total/dayone/country/india");
     const resp = await response.json();
     //response.then(pp=>{
-    const value = resp.cases_time_series;
+    //const value = resp.cases_time_series;
+    const value = resp;
     let a = [];
     let b = [];
     let c = [];
     let k = value.length;
     let j = value.length;
     let l = value.length;
-    //console.log(value);
-    for (let i = value.length - 1; i >= 0; i--) {
-        a[k--] = value[i].dailyconfirmed;
-        b[j--] = value[i].date;
-        c[l--] = value[i].dailydeceased;
-    }
-    // console.log(a);
-    //console.log(b);
+        for(let i=value.length-2;i>0;i--)
+                {
+                    let cases=value[i].Deaths-value[i-1].Deaths;
+                    if(cases>0)
+                    {
+                        a[k--]=cases;
+                        b[j--]=(new Date(value[i].Date.substring(0,10)).toUTCString()).substring(4,16);
+                    }
+                }
 
     var ctx = document.getElementById('myChart8').getContext('2d');
     myChart8 = new Chart(ctx, {
@@ -334,7 +354,7 @@ async function funcDeath() {
             labels: b,
             datasets: [{
                 label: 'Number of Deaths in India',
-                data: c,
+                data: a,
                 backgroundColor: [
                     'rgba(166, 76, 79, 0.7)'
                 ],

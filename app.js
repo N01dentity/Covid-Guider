@@ -58,7 +58,7 @@ app.get("/vaccination",async(req,res)=>{
     res.render("vaccination");
 });
 app.get("/abcd",async(req,res)=>{
-    res.json({message:"Hi"});
+    res.render("abcd");
 })
 app.get("/countryWiseJson",async(req,res)=>{
     const state= await api.gov();
@@ -74,7 +74,7 @@ app.get("/guidelines",async(req,res)=>{
 });*/
 
 
-const port= process.env.PORT || 4000;
+const port= process.env.PORT || 3000;
 app.listen(port,()=>
 {
     console.log(`Server Ready on port ${port}`);
